@@ -3,7 +3,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 
 import javax.swing.JApplet;
-import javax.swing.JFrame;
 
 
 public class MainApplet extends JApplet {

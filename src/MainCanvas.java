@@ -1,7 +1,6 @@
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
@@ -12,6 +11,7 @@ public class MainCanvas extends Canvas implements Runnable
 	{
 	public static final int PWIDTH = 400;
 	public static final int PHEIGHT = 400;
+	int bolo;
 	
 	public static MainCanvas instance = null;
 	
