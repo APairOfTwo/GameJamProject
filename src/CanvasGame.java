@@ -1,4 +1,6 @@
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -17,11 +19,21 @@ public class CanvasGame extends Canvas {
 	public static BufferedImage charsetEnemyPlatform;
 	public static BufferedImage imagePlatform;
 	public static BufferedImage tileset;
+	public static BufferedImage backBranco;
+	public static BufferedImage backDay;
+	public static BufferedImage backNight;
 	public BufferedImage loadingScreen = GamePanel.loadImage("backgrounds/loading_background.png");
 	
-	public static String strMap01 = new String("maps/hell_01.map");
-	public static String strTileset01 = new String("maps/hell_tileset.png");
-	public static String strElements01 = new String("csv/hell_01.csv");
+	public int rule = AlphaComposite.SRC_OVER;
+	public Composite comp;
+	public float alpha = 1f;
+	public float decreaseTimeTick = 2000;
+	public boolean descTime = true;
+	
+	public static String strMap01 = new String("maps/mapa 1.map");
+	public static String strTileset01 = new String("maps/tileset2222.png");
+	//public static String strElements01 = new String("csv/hell_01.csv");
+	public static String strElements01 = new String("csv/mapa1.csv");
 	
 	Random rand = new Random();
 	
@@ -51,6 +63,9 @@ public class CanvasGame extends Canvas {
 		charsetEnemyBug = GamePanel.loadImage("sprites/demon.png");
 		charsetEnemyPlatform = GamePanel.loadImage("sprites/gargoyle5.png");
 		imagePlatform = GamePanel.loadImage("sprites/platform.png");
+		backBranco = GamePanel.loadImage("backgrounds/background_branco.png");
+		backDay = GamePanel.loadImage("backgrounds/day_sky.png");
+		backNight = GamePanel.loadImage("backgrounds/night_sky.png");
 		
 		MOUSE_X = 0;
 		MOUSE_Y = 0;
@@ -112,6 +127,19 @@ public class CanvasGame extends Canvas {
 					i--;
 				}
 			}
+			
+			decreaseTimeTick += diffTime;
+			if(decreaseTimeTick >= 500) {
+				decreaseTimeTick = 0;
+				if(descTime) {
+					alpha -= 0.01f;
+				} else {
+					alpha += 0.01f;
+				}
+				if(alpha < 0.01 || alpha >= 1){
+					descTime = !descTime;
+				}
+			}
 		} else {
 			loadTime += diffTime;
 			if(loadTime >= 2000) {
@@ -124,6 +152,17 @@ public class CanvasGame extends Canvas {
 	
 	@Override
 	public void selfDraws(Graphics2D dbg){
+		//dbg.drawImage(backDay, 0, 0, GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT, 0, 0, backDay.getWidth(), backDay.getHeight(), null);
+		dbg.drawImage(backNight, 0, 0, null);
+		
+        comp = AlphaComposite.getInstance(rule , alpha);
+        dbg.setComposite(comp);
+		
+        dbg.drawImage(backDay, 0, 0, null);
+        
+        comp = AlphaComposite.getInstance(rule , 1f);
+        dbg.setComposite(comp);
+        
 		map.selfDraws(dbg);
 		
 		for(int i = 0; i < projectilesList.size(); i++){
