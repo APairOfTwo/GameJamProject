@@ -7,18 +7,18 @@ import javax.swing.JApplet;
 
 public class MainApplet extends JApplet {
 	
-	public static MainCanvas mpanel = null;
+	public static GamePanel panel = null;
 	
 	@Override
 	public void init() {
 		super.init();
 		
-		mpanel = new MainCanvas();
+		panel = new GamePanel();
 
-		setSize(MainCanvas.PWIDTH, MainCanvas.PHEIGHT);
+		setSize(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT);
 		Container c = getContentPane();
 		c.setLayout(new BorderLayout());
-		c.add(mpanel, BorderLayout.CENTER);
+		c.add(panel, BorderLayout.CENTER);
 
 		setVisible(true);
 	}
