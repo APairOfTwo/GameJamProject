@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
 		setFocusable(true);
 		requestFocus();
 		
-		MainApplet.menuMusic.loop();
+		//MainApplet.menuMusic.loop(); TODO
 		
 		if (buffImage == null){
 			buffImage = new BufferedImage(PANEL_WIDTH, PANEL_HEIGHT, BufferedImage.TYPE_INT_ARGB);

@@ -5,17 +5,14 @@ import java.awt.image.BufferedImage;
 
 
 public class CharBilly extends Character {
-	int fireRate = 800;
+	int fireRate = 500;
 	int respawnCountTime;
 	float speed = 220;
-	boolean haveKey = false;
-	int numShotsBone = 10;
 	Projectile proj;
 	boolean positionsMap = false;
 	float spawnX, spawnY;
 	int fireAnim;
 	int animeLine = 0;
-	public static BufferedImage hudProjBone = GamePanel.loadImage("sprites/hud_projBone.png");
 	public static BufferedImage bmpBone;
 	BufferedImage deadMsg = GamePanel.loadImage("sprites/msgDeathBilly.png");
 	
@@ -23,7 +20,7 @@ public class CharBilly extends Character {
 		super(x, y, charset, charsetX, charsetY, 62, 64, 4);
 		this.spawnX = x;
 		this.spawnY = y;
-		bmpBone = GamePanel.loadImage("sprites/bone.png");
+		bmpBone = GamePanel.loadImage("sprites/tiro.png");
 	}
 
 	@Override
@@ -42,104 +39,83 @@ public class CharBilly extends Character {
 		if((x+frameWidth > (CanvasGame.map.Largura << 4)-5)) { x = (((CanvasGame.map.Largura << 4)-5)-frameWidth); }
 		if((y+frameHeight > (CanvasGame.map.Altura << 4)-5)) { isAlive = false; }
 		
-		if(numShotsBone <= 0) {
-			isHeadless = true;
-		}
-		
 		if(!isHeadless) {
-		if((CanvasGame.FIRE) && fireTimer > fireRate){
-			fireAnim += diffTime;
-			fireTimer = 0;
-			float vproj = 1000;
-			
-			float pX = x + centerX - CanvasGame.map.MapX;
-			float pY = y + centerY - CanvasGame.map.MapY;
-			
-			float dX = CanvasGame.MOUSE_X - pX;
-			float dY = CanvasGame.MOUSE_Y - pY;
-			
-			double angle = Math.atan2(dY, dX);
-			
-			float vX = (float)(vproj * Math.cos(angle));
-			float vY = (float)(vproj * Math.sin(angle));
-			
-			proj = new ProjBone(x + centerX, y + centerY, vX, vY, bmpBone, this);
-			CanvasGame.projectilesList.add(proj);
-			numShotsBone--;
-		}
-		
-		if((CanvasGame.JUMP) && onTheFloor) {
-			animeSpeed = 100;
-			jumpSpeed = 1100;
-			hasJumped = true;
-			if(moveDirection == 1) animation = 0  + animeLine;
-			if(moveDirection == -1) animation = 1  + animeLine;
-		}
-		if(!CanvasGame.JUMP) {
-			jumpSpeed = jumpSpeed / 2;
-		}
-		if(CanvasGame.RIGHT) {
-			animeSpeed = 100;
-			x += speed * diffTime / 1000.0f;
-			animation = 2 + animeLine;
-			moveDirection = 1;
-		} else if(CanvasGame.LEFT) {
-			animeSpeed = 100;
-			x -= speed * diffTime / 1000.0f;
-			animation = 3 + animeLine;
-			moveDirection = -1;
-		} else {
-			if(moveDirection == 1) {
-				animeSpeed = 200;
-				animation = 0 + animeLine;
-			} else if(moveDirection == -1) {
-				animeSpeed = 200;
-				animation = 1 + animeLine;
+			if((CanvasGame.FIRE) && fireTimer > fireRate){
+				fireAnim += diffTime;
+				fireTimer = 0;
+				float vproj = 600;
+				
+				float pX = x + centerX - CanvasGame.map.MapX;
+				float pY = y + centerY - CanvasGame.map.MapY;
+				
+				float dX = CanvasGame.MOUSE_X - pX;
+				float dY = CanvasGame.MOUSE_Y - pY;
+				
+				double angle = Math.atan2(dY, dX);
+				
+				float vX = (float)(vproj * Math.cos(angle));
+				float vY = (float)(vproj * Math.sin(angle));
+				
+				proj = new ProjBone(x + centerX, y + centerY, vX, vY, bmpBone, this);
+				CanvasGame.projectilesList.add(proj);
 			}
-		}
-		
-		if(fireAnim != 0) {
-			fireAnim += diffTime;
-			animeSpeed = 100;
-			if(fireAnim >= 420) {
-				fireAnim = 0;
-			}
-			if(moveDirection == 1) {
-				animation = 4 + animeLine;
-			} else {
-				animation = 5 + animeLine;
-			}
-		}
-		
-		if(numShotsBone == 2) {
-			animeLine = 6;
-		}
-		if(numShotsBone == 1) {
-			animeLine = 12;
-		}
-		if(numShotsBone <= 0) {
-			animeLine = 14;
-		}
-		
-		if(hasJumped) {
-			y -= jumpSpeed * diffTime / 1000.0f;
-			jumpSpeed -= 3 * gravity * (diffTime / 1000.0f);
-			if(jumpSpeed <= 0) {
-				hasJumped = false;
+			
+			if((CanvasGame.JUMP) && onTheFloor) {
+				animeSpeed = 100;
 				jumpSpeed = 1100;
+				hasJumped = true;
+				if(moveDirection == 1) animation = 0  + animeLine;
+				if(moveDirection == -1) animation = 1  + animeLine;
 			}
-		}
+			if(!CanvasGame.JUMP) {
+				jumpSpeed = jumpSpeed / 2;
+			}
+			if(CanvasGame.RIGHT) {
+				animeSpeed = 100;
+				x += speed * diffTime / 1000.0f;
+				animation = 2 + animeLine;
+				moveDirection = 1;
+			} else if(CanvasGame.LEFT) {
+				animeSpeed = 100;
+				x -= speed * diffTime / 1000.0f;
+				animation = 3 + animeLine;
+				moveDirection = -1;
+			} else {
+				if(moveDirection == 1) {
+					animeSpeed = 200;
+					animation = 0 + animeLine;
+				} else if(moveDirection == -1) {
+					animeSpeed = 200;
+					animation = 1 + animeLine;
+				}
+			}
+			
+			if(fireAnim != 0) {
+				fireAnim += diffTime;
+				animeSpeed = 100;
+				if(fireAnim >= 420) {
+					fireAnim = 0;
+				}
+				if(moveDirection == 1) {
+					animation = 4 + animeLine;
+				} else {
+					animation = 5 + animeLine;
+				}
+			}
+			
+			if(hasJumped) {
+				y -= jumpSpeed * diffTime / 1000.0f;
+				jumpSpeed -= 3 * gravity * (diffTime / 1000.0f);
+				if(jumpSpeed <= 0) {
+					hasJumped = false;
+					jumpSpeed = 1100;
+				}
+			}
 		} else {
 			if(moveDirection == 1) {
 				animation = 4 + animeLine;
 			} else {
 				animation = 5 + animeLine;
-			}
-			headlessCounter += diffTime;
-			if(headlessCounter >= headlessTime) {
-				headlessCounter = 0;
-				CanvasGame.deathCounter++;
-				isAlive = false;
 			}
 		}
 		
@@ -200,20 +176,10 @@ public class CharBilly extends Character {
 		
 		for(Element e : CanvasGame.gameElements.elementsList) {
 			if(e.itemId == 9) {
-				if(GamePanel.levelId == 3 && haveKey) {
-					if(this.getBounds().intersects((e.blockX<<4)-CanvasGame.map.MapX, (e.blockY<<4)-CanvasGame.map.MapY, 16, 64)) {
-						GamePanel.canvasActive = new CanvasResult();
-					}
-				}
 				if(GamePanel.levelId != 3) {
 					if(this.getBounds().intersects((e.blockX<<4)-CanvasGame.map.MapX, (e.blockY<<4)-CanvasGame.map.MapY, 16, 64)) {
 						GamePanel.canvasActive = new CanvasResult();
 					}
-				}
-			}
-			if(e.itemId == 10) {
-				if(this.getBounds().intersects((e.blockX<<4)-CanvasGame.map.MapX, (e.blockY<<4)-CanvasGame.map.MapY, 16, 32)) {
-					haveKey = true;
 				}
 			}
 		}
@@ -223,10 +189,6 @@ public class CharBilly extends Character {
 	public void selfDraws(Graphics2D dbg, int mapX, int mapY) {
 		if(isAlive) {
 			super.selfDraws(dbg, mapX, mapY);
-			for(int i = 0; i < numShotsBone; i++) {
-				int x = i * 12;
-				dbg.drawImage(hudProjBone, (int)(x), (int)(25), (int)(x+16), (int)(25+40), 0, 0, hudProjBone.getWidth(), hudProjBone.getHeight(), null);
-			}
 		} else {
 			dbg.setColor(Color.BLACK);
 			dbg.fillRect(0, GamePanel.PANEL_HEIGHT-60, deadMsg.getWidth()+10, deadMsg.getHeight()+10);
@@ -243,7 +205,6 @@ public class CharBilly extends Character {
 		isAlive = true;
 		isHeadless = false;
 		hasJumped = false;
-		numShotsBone = 3;
 		animeLine = 0;
 		
 		if(CanvasGame.checkpoints.size() != 0) {

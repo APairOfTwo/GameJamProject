@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -44,7 +43,7 @@ public class CanvasGame extends Canvas {
 	public CanvasGame(int levelId) {
 		instance = this;
 		
-		MainApplet.menuMusic.stop();
+		//MainApplet.menuMusic.stop(); TODO
 		
 		charsetBilly = GamePanel.loadImage("sprites/billy.png");
 		charsetDemon = GamePanel.loadImage("sprites/demon.png");
@@ -114,7 +113,7 @@ public class CanvasGame extends Canvas {
 			if(loadTime >= 4000) {
 				loadTime = 0;
 				loading = false;
-				MainApplet.music1.loop();
+				//MainApplet.music1.loop(); TODO
 			}
 		}
 	}

@@ -8,6 +8,7 @@ public class Projectile extends Sprite {
 	int bx, by;
 	Object pai = null;
 	BufferedImage bmp;
+	BufferedImage bmp2;
 	public static int frameWidth, frameHeight;
 	
 	public Projectile(float x, float y, float velX, float velY, BufferedImage bmp, Object pai) {
