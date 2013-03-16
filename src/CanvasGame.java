@@ -162,7 +162,7 @@ public class CanvasGame extends Canvas {
         
         comp = AlphaComposite.getInstance(rule , 1f);
         dbg.setComposite(comp);
-        
+
 		map.selfDraws(dbg);
 		
 		for(int i = 0; i < projectilesList.size(); i++){
