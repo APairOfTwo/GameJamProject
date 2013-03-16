@@ -44,6 +44,8 @@ public class CanvasGame extends Canvas {
 	public CanvasGame(int levelId) {
 		instance = this;
 		
+		MainApplet.menuMusic.stop();
+		
 		charsetBilly = GamePanel.loadImage("sprites/billy.png");
 		charsetDemon = GamePanel.loadImage("sprites/demon.png");
 		
@@ -112,6 +114,7 @@ public class CanvasGame extends Canvas {
 			if(loadTime >= 4000) {
 				loadTime = 0;
 				loading = false;
+				MainApplet.music1.loop();
 			}
 		}
 	}
@@ -134,7 +137,6 @@ public class CanvasGame extends Canvas {
 		}
 		
 		billy.selfDraws(dbg, map.MapX, map.MapY);
-		
 		
 		if(loading) {
 			dbg.setColor(Color.BLACK);

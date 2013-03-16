@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
-import java.util.ArrayList;
 import java.awt.image.*;
 import javax.imageio.ImageIO;
 
@@ -31,6 +30,8 @@ public class GamePanel extends JPanel implements Runnable {
 		setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
 		setFocusable(true);
 		requestFocus();
+		
+		MainApplet.menuMusic.loop();
 		
 		if (buffImage == null){
 			buffImage = new BufferedImage(PANEL_WIDTH, PANEL_HEIGHT, BufferedImage.TYPE_INT_ARGB);
