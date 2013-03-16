@@ -45,7 +45,7 @@ public class ElementManager {
 				CanvasGame.billy = new CharBilly(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetBilly, 0, 0);
 				break;
 			case 3:
-				Checkpoint check = new Checkpoint(ele.blockX<<4, ele.blockY<<4);
+				Terminal check = new Terminal(ele.blockX<<4, ele.blockY<<4);
 				CanvasGame.checkpoints.add(check);
 				break;
 			case 4:

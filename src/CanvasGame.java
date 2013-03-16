@@ -25,10 +25,10 @@ public class CanvasGame extends Canvas {
 	
 	public static ArrayList<Character> enemiesList = new ArrayList<Character>();
 	public static ArrayList<Projectile> projectilesList = new ArrayList<Projectile>();
-	public static ArrayList<Checkpoint> checkpoints = new ArrayList<Checkpoint>();
+	public static ArrayList<Terminal> checkpoints = new ArrayList<Terminal>();
 	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	
-	public static boolean LEFT, RIGHT, JUMP, FIRE;
+	public static boolean LEFT, RIGHT, JUMP, FIRE, INTERACTION;
 	public static boolean MOUSE_PRESSED;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
@@ -88,7 +88,7 @@ public class CanvasGame extends Canvas {
 				}
 			}
 			
-			for(Checkpoint c : checkpoints) {
+			for(Terminal c : checkpoints) {
 				c.selfSimulates(diffTime);
 				if(c.respawnBilly && !c.hasBeenActived) {
 					billy.respawnCountTime += diffTime;
@@ -128,7 +128,7 @@ public class CanvasGame extends Canvas {
 		for(int i = 0; i < enemiesList.size(); i++) {
 			enemiesList.get(i).selfDraws(dbg, map.MapX, map.MapY);
 		}
-		for(Checkpoint c : checkpoints) {
+		for(Terminal c : checkpoints) {
 			c.selfDraws(dbg, map.MapX, map.MapY);
 		}
 		for(int i = 0; i < effectsList.size(); i++){
@@ -150,6 +150,7 @@ public class CanvasGame extends Canvas {
 		if(keyCode == KeyEvent.VK_A)		{ LEFT = true; }
 		if(keyCode == KeyEvent.VK_D)		{ RIGHT = true; }
 		if(keyCode == KeyEvent.VK_W)		{ JUMP  = true; }
+		if(keyCode == KeyEvent.VK_CONTROL)		{ INTERACTION  = true; }
 		if(keyCode == KeyEvent.VK_F)	{ GamePanel.showFps = !GamePanel.showFps; }
 		if(keyCode == KeyEvent.VK_ESCAPE) {
 			if(CanvasPause.instance == null) {
@@ -165,6 +166,7 @@ public class CanvasGame extends Canvas {
 		if(keyCode == KeyEvent.VK_A)		{ LEFT  = false; }
 		if(keyCode == KeyEvent.VK_D)		{ RIGHT = false; }
 		if(keyCode == KeyEvent.VK_W)		{ JUMP  = false; }
+		if(keyCode == KeyEvent.VK_CONTROL)		{ INTERACTION  = false; }
 	}
 
 	@Override
