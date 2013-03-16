@@ -7,7 +7,7 @@ public class CanvasResult extends Canvas {
 
 	public static CanvasResult instance = null;
 	private BufferedImage background;
-	private GameButton btnContinue, btnRetry;
+	private GameButton btnRetry;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
 	public static boolean MOUSE_PRESSED;
@@ -17,7 +17,6 @@ public class CanvasResult extends Canvas {
 	public CanvasResult() {
 		instance = this;
 		background = GamePanel.loadImage("backgrounds/score_background.png");
-		btnContinue = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 50, "buttons/btnNextMapOn.png", "buttons/btnNextMapOff.png");
 		btnRetry = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/btnRetryOn.png", "buttons/btnRetryOff.png");
 		
 		numberOfDeaths = CanvasGame.deathCounter;
@@ -26,21 +25,8 @@ public class CanvasResult extends Canvas {
 	
 	@Override
 	public void selfSimulates(long diffTime) {
-		if(btnContinue.isMouseOver(MOUSE_X, MOUSE_Y)){ btnContinue.setState(1); }
-		else { btnContinue.setState(0); }
-		
 		if(btnRetry.isMouseOver(MOUSE_X, MOUSE_Y)){ btnRetry.setState(1); }
 		else { btnRetry.setState(0); }
-		
-		if(MOUSE_PRESSED && btnContinue.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
-			if(GamePanel.levelId >= 3) {
-				GamePanel.canvasActive = new CanvasFinal();
-			} else {
-				GamePanel.levelId += 1;
-				GamePanel.changeMap(GamePanel.levelId);
-			}
-			MOUSE_PRESSED = false;
-		}
 		
 		if(MOUSE_PRESSED && btnRetry.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
 			CanvasGame.deathCounter = 0;
@@ -53,7 +39,6 @@ public class CanvasResult extends Canvas {
 	@Override
 	public void selfDraws(Graphics2D dbg) {
 		dbg.drawImage(background, GamePanel.PANEL_WIDTH/2 - 300, GamePanel.PANEL_HEIGHT/2 - 250, GamePanel.PANEL_WIDTH/2 + 300, GamePanel.PANEL_HEIGHT/2 + 250, 0, 0, background.getWidth(), background.getHeight(), null);
-		btnContinue.selfDraws(dbg);
 		btnRetry.selfDraws(dbg);
 		dbg.drawString("Number of deaths: " + numberOfDeaths, 325, 200);
 		dbg.drawString("Number of projectiles fired: " + numberOfProjectiles, 325, 250);
