@@ -2,14 +2,14 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class EnemyDemon extends Character {
+public class EnemyBug extends Character {
 	final float DEFAULT_SPEED = 109;
 	double projDx, projDy, projDist;
 	double velX, velY;
 	private int changeDirectionRate = 200;
 	Projectile proj;
 	
-	public EnemyDemon(float x, float y, BufferedImage charset, int charsetX, int charsetY) {
+	public EnemyBug(float x, float y, BufferedImage charset, int charsetX, int charsetY) {
 		super(x, y, charset, charsetX, charsetY, 100, 70, 4);
 		speed = DEFAULT_SPEED;
 	}
@@ -51,62 +51,14 @@ public class EnemyDemon extends Character {
 			projDist = Math.hypot(projDx, projDy);
 		}
 		
-		if(!this.isStunned && !this.isEating && !this.isFollowing) {
-			if(moveDirection == 1) {
-				animation = 1;
-				x += speed * diffTime / 1000.0f;
-			} else if(moveDirection == -1) {
-				animation = 0;
-				x -= speed * diffTime / 1000.0f;
-			} else {
-				timeAnimating = 0;
-			}
+		if(moveDirection == 1) {
+			animation = 1;
+			x += speed * diffTime / 1000.0f;
+		} else if(moveDirection == -1) {
+			animation = 0;
+			x -= speed * diffTime / 1000.0f;
 		} else {
-			if(this.isStunned){
-				countTime += diffTime;
-				animeSpeed = 350;
-				if(moveDirection == 1) {
-					animation = 3;
-				} else if(moveDirection == -1) {
-					animation = 2;
-				} else {
-					timeAnimating = 0;
-				}
-				if(countTime >= 5000) {
-					isStunned = false;
-					speed = DEFAULT_SPEED;
-					countTime = 0;
-				}
-			}
-			if(this.isFollowing && proj.active) {
-				x += velX * projDx / projDist;
-				y += velY * projDy / projDist;
-				if(projDx >= 0) {
-					animation = 1;
-					moveDirection = 1;
-				} else if(projDx < 0) {
-					animation = 0;
-					moveDirection = -1;
-				}
-			}
-			if(this.isEating){
-				countTime += diffTime;
-				animeSpeed = 350;
-				if(moveDirection == 1) {
-					animation = 1;
-				} else if(moveDirection == -1) {
-					animation = 0;
-				}
-				if(countTime >= 5000) {
-					proj.active = false;
-					speed = DEFAULT_SPEED;
-					countTime = 0;
-				}
-			}
-		}
-		
-		if(!this.isEating && !this.isStunned) {
-			animeSpeed = 200;
+			timeAnimating = 0;
 		}
 		
 		if(floorCollision((int)((x+40)/16), (int)((x+55)/16), (int)((x+70)/16), (int)((y+67)/16), (int)((y+66)/16), (int)((y+65)/16))) {

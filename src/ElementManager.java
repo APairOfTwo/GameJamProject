@@ -49,7 +49,7 @@ public class ElementManager {
 				CanvasGame.checkpoints.add(check);
 				break;
 			case 4:
-				Character demon = new EnemyDemon(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetDemon, 0, 0);
+				Character demon = new EnemyBug(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetDemon, 0, 0);
 				CanvasGame.enemiesList.add(demon);
 				break;
 //			case 5:

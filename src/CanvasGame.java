@@ -110,7 +110,7 @@ public class CanvasGame extends Canvas {
 			}
 		} else {
 			loadTime += diffTime;
-			if(loadTime >= 4000) {
+			if(loadTime >= 2000) {
 				loadTime = 0;
 				loading = false;
 				//MainApplet.music1.loop(); TODO

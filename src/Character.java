@@ -37,8 +37,8 @@ public class Character extends Sprite {
 	float oldY = 0;
 	
 	boolean isStunned = false;
-	boolean isEating = false;
-	boolean isFollowing = false;
+	//boolean isEating = false;
+	//boolean isFollowing = false;
 	int countTime = 0;
 	int headlessCounter = 0;
 	public long respawnCountTime;
