@@ -13,7 +13,9 @@ public class CanvasGame extends Canvas {
 	public static TileMap map;
 	
 	public static BufferedImage charsetBilly;
-	public static BufferedImage charsetDemon;
+	public static BufferedImage charsetEnemyBug;
+	public static BufferedImage charsetEnemyPlatform;
+	public static BufferedImage imagePlatform;
 	public static BufferedImage tileset;
 	public BufferedImage loadingScreen = GamePanel.loadImage("backgrounds/loading_background.png");
 	
@@ -46,7 +48,9 @@ public class CanvasGame extends Canvas {
 		//MainApplet.menuMusic.stop(); TODO
 		
 		charsetBilly = GamePanel.loadImage("sprites/billy.png");
-		charsetDemon = GamePanel.loadImage("sprites/demon.png");
+		charsetEnemyBug = GamePanel.loadImage("sprites/demon.png");
+		charsetEnemyPlatform = GamePanel.loadImage("sprites/gargoyle5.png");
+		imagePlatform = GamePanel.loadImage("sprites/platform.png");
 		
 		MOUSE_X = 0;
 		MOUSE_Y = 0;
@@ -113,7 +117,7 @@ public class CanvasGame extends Canvas {
 			if(loadTime >= 2000) {
 				loadTime = 0;
 				loading = false;
-				//MainApplet.music1.loop(); TODO
+				//MainApplet.music1.loop(); //TODO
 			}
 		}
 	}

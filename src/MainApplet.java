@@ -9,6 +9,7 @@ public class MainApplet extends JApplet {
 	public static GamePanel panel = null;
 	public static AudioClip menuMusic;
 	public static AudioClip music1;
+	public static AudioClip hitFx;
 	
 	@Override
 	public void init() {
@@ -16,6 +17,7 @@ public class MainApplet extends JApplet {
 		
 		menuMusic = getAudioClip(getCodeBase(), "audio/MenuMusic.wav");
 		music1 = getAudioClip(getCodeBase(), "audio/Music1.wav");
+		hitFx = getAudioClip(getCodeBase(), "audio/hit.wav");
 		
 		panel = new GamePanel();
 

@@ -49,13 +49,13 @@ public class ElementManager {
 				CanvasGame.checkpoints.add(check);
 				break;
 			case 4:
-				Character demon = new EnemyBug(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetDemon, 0, 0);
-				CanvasGame.enemiesList.add(demon);
+				Character bug = new EnemyBug(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetEnemyBug, 0, 0);
+				CanvasGame.enemiesList.add(bug);
 				break;
-//			case 5:
-//				Character gargoyle = new EnemyGargoyle(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetGargoyle, 0, 0);
-//				CanvasGame.enemiesList.add(gargoyle);
-//				break;
+			case 5:
+				Character platform = new EnemyPlatform(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetEnemyPlatform, CanvasGame.imagePlatform, 0, 0);
+				CanvasGame.enemiesList.add(platform);
+				break;
 //			case 6:
 //				Character vegetarian = new EnemyVegetarian(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetVegetarian, 0, 0);
 //				CanvasGame.enemiesList.add(vegetarian);

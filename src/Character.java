@@ -122,6 +122,7 @@ public class Character extends Sprite {
 	}
 	
 	public void hitByProjectile() {
+		MainApplet.hitFx.play();
 		bloodAngle = Math.atan2(100, 1);
 		bloodAngle += Math.PI;
 		for(int i = 0; i < 20; i++) {
