@@ -154,7 +154,6 @@ public class CanvasGame extends Canvas {
 	
 	@Override
 	public void selfDraws(Graphics2D dbg){
-		//dbg.drawImage(backDay, 0, 0, GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT, 0, 0, backDay.getWidth(), backDay.getHeight(), null);
 		dbg.drawImage(backNight, 0, 0, null);
 		
         comp = AlphaComposite.getInstance(rule , alpha);
