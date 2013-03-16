@@ -113,10 +113,4 @@ public class EnemyBug extends Character {
 		Rectangle r = new Rectangle((int)(x-CanvasGame.map.MapX+23), (int)(y-CanvasGame.map.MapY+30), 53, 40);
 		return r;
 	}
-	
-	@Override
-	public void hitByProjectile(Projectile p) {
-		super.hitByProjectile(p);
-		proj = p;
-	}
 }

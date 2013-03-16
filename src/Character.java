@@ -36,9 +36,6 @@ public class Character extends Sprite {
 	float oldX = 0;
 	float oldY = 0;
 	
-	boolean isStunned = false;
-	//boolean isEating = false;
-	//boolean isFollowing = false;
 	int countTime = 0;
 	int headlessCounter = 0;
 	public long respawnCountTime;
@@ -124,20 +121,17 @@ public class Character extends Sprite {
 		return null;
 	}
 	
-	public void hitByProjectile(Projectile p) {
-		if(p.getClass() == ProjBone.class) {
-			isStunned = true;
-			speed = 0;
-			bloodAngle = Math.atan2(100, 1);
-			bloodAngle += Math.PI;
-			for(int i = 0; i < 20; i++) {
-				bloodAuxAngle = bloodAngle - (Math.PI/4) + ((Math.PI/2) * Math.random());
-				vel = (float)(150 + 100 * Math.random());
-				vX = (float)(Math.cos(bloodAuxAngle) * vel);
-				vY = (float)(Math.sin(bloodAuxAngle) * vel);
-				CanvasGame.effectsList.add(new Effect(x+frameWidth/2, y+frameHeight/2, vX, vY, 300, 255, 255, 255));
-			}
+	public void hitByProjectile() {
+		bloodAngle = Math.atan2(100, 1);
+		bloodAngle += Math.PI;
+		for(int i = 0; i < 20; i++) {
+			bloodAuxAngle = bloodAngle - (Math.PI/4) + ((Math.PI/2) * Math.random());
+			vel = (float)(150 + 100 * Math.random());
+			vX = (float)(Math.cos(bloodAuxAngle) * vel);
+			vY = (float)(Math.sin(bloodAuxAngle) * vel);
+			CanvasGame.effectsList.add(new Effect(x+frameWidth/2, y+frameHeight/2, vX, vY, 300, 255, 255, 255));
 		}
+		this.isAlive = false;
 	}
 
 	public void respawn() {	}

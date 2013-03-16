@@ -174,7 +174,10 @@ public class CanvasGame extends Canvas {
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent m) { }
+	public void mouseDragged(MouseEvent m) {
+		MOUSE_X = m.getX();
+		MOUSE_Y = m.getY();
+	}
 	
 	@Override
 	public void mousePressed(MouseEvent m) {

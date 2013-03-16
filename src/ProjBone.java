@@ -38,7 +38,7 @@ public class ProjBone extends Projectile {
 			if(ene!=pai){
 				if(circleCollision(ene, boneRadius)) {
 					active = false;
-					ene.hitByProjectile(this);
+					ene.hitByProjectile();
 					break;
 				}
 			}
