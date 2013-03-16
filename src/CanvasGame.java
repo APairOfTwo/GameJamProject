@@ -53,6 +53,8 @@ public class CanvasGame extends Canvas {
 	public static int deathCounter = 0;
 	public static int projectilesCounter = 0;
 	
+    private RainDrop[] rainDrops = new RainDrop[500];
+	
 	public CanvasGame(int levelId) {
 		instance = this;
 		
@@ -72,6 +74,7 @@ public class CanvasGame extends Canvas {
 		MOUSE_CLICK_Y = 0;
 		MOUSE_PRESSED = false;
 		loading = true;
+        createRainDrops();
 	}
 	
 	@Override
@@ -179,6 +182,13 @@ public class CanvasGame extends Canvas {
 		
 		billy.selfDraws(dbg, map.MapX, map.MapY);
 		
+        for(int i = 0; i< rainDrops.length; ++i) {
+        	dbg.setColor(Color.WHITE);
+        	rainDrops[i].selfDraws(dbg, map.MapX, map.MapY);
+            if(rainDrops[i].x > GamePanel.PANEL_WIDTH || rainDrops[i].y > GamePanel.PANEL_HEIGHT)
+            	createRainDrop(i);
+        }
+		
 		if(loading) {
 			dbg.setColor(Color.BLACK);
 			dbg.fillRect(0, 0, GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT);
@@ -243,6 +253,18 @@ public class CanvasGame extends Canvas {
 		JUMP = false; 
 		FIRE = false;
 	}
+	
+	public void createRainDrops() {
+		for(int i = 0; i < rainDrops.length; ++i)
+			createRainDrop(i);
+    }
+	
+    public void createRainDrop(int index) {
+    	int ranX = (int) (Math.random() * GamePanel.PANEL_WIDTH);
+        int ranY = (int) (Math.random() * GamePanel.PANEL_HEIGHT);
+        int ranVel = (int) (Math.random() * 10);
+        rainDrops[index] = new RainDrop(ranX, ranY, ranVel);
+    }
 	
 	public static void setGameLevel(int levelId) {
 		if(levelId == 1) {

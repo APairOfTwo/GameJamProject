@@ -41,7 +41,7 @@ public class Effect extends Sprite {
 	@Override
 	public void selfDraws(Graphics2D dbg, int mapx, int mapY){
 		int alpha = (int)((1.0 - (timerActive / (double)duration)) * 255);
-		if(alpha > 255){ alpha = 255; }
+		if(alpha > 255) { alpha = 255; }
 		dbg.setColor(new Color(r, g, b, alpha));
 		dbg.fillRect((int)(x-mapx-1), (int)(y-mapY-1), 5, 5);
 	}
