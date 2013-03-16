@@ -53,7 +53,6 @@ public class Terminal extends Sprite {
 		
 		if(!isActive && CanvasGame.billy.getBounds().intersects(mapBlockX-CanvasGame.map.MapX, mapBlockY-CanvasGame.map.MapY, mapBlockWidth-CanvasGame.map.MapX, mapBlockHeight-CanvasGame.map.MapY)) {
 			CanvasGame.billy.x = CanvasGame.billy.oldX;
-			CanvasGame.billy.y = CanvasGame.billy.oldY;
 		}
 
 		if(showMsg) {
