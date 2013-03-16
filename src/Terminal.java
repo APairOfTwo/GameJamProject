@@ -65,8 +65,6 @@ public class Terminal extends Sprite {
 		if(msgTime >= 2000) {
 			showMsg = false;
 		}
-		
-		
 	}
 
 	@Override

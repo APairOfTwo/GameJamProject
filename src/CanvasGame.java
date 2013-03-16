@@ -30,9 +30,8 @@ public class CanvasGame extends Canvas {
 	public float decreaseTimeTick = 2000;
 	public boolean descTime = true;
 	
-	public static String strMap01 = new String("maps/mapa 1.map");
+	public static String strMap01 = new String("maps/mapacompleto.map");
 	public static String strTileset01 = new String("maps/tileset2222.png");
-	//public static String strElements01 = new String("csv/hell_01.csv");
 	public static String strElements01 = new String("csv/mapa1.csv");
 	
 	Random rand = new Random();
