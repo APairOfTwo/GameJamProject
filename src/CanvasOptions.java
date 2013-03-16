@@ -8,7 +8,7 @@ public class CanvasOptions extends Canvas {
 
 	public static CanvasOptions instance = null;
 	private BufferedImage background;
-	private GameButton btnBack, btnMinus, btnPlus, btnGoFullScreen, btnGoWindowed;
+	private GameButton btnBack, btnMinus, btnPlus;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
 	public static boolean MOUSE_PRESSED;
@@ -21,8 +21,6 @@ public class CanvasOptions extends Canvas {
 		btnMinus = new GameButton(GamePanel.PANEL_WIDTH/2 - 100, GamePanel.PANEL_HEIGHT/2 - 80, "buttons/btnMinusOn.png", "buttons/btnMinusOff.png");
 		btnPlus = new GameButton(GamePanel.PANEL_WIDTH/2 + 50, GamePanel.PANEL_HEIGHT/2 - 80, "buttons/btnPlusOn.png", "buttons/btnPlusOff.png");
 		btnBack = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 200, "buttons/btnBackOn.png", "buttons/btnBackOff.png");
-		btnGoFullScreen = new GameButton(GamePanel.PANEL_WIDTH/2 - 75, GamePanel.PANEL_HEIGHT/2 + 100, "buttons/btnFullOn.png", "buttons/btnFullOff.png");
-		btnGoWindowed = new GameButton(GamePanel.PANEL_WIDTH/2 - 75, GamePanel.PANEL_HEIGHT/2 + 100, "buttons/btnWindowOn.png", "buttons/btnWindowOff.png");
 	}
 	
 	@Override
@@ -31,10 +29,6 @@ public class CanvasOptions extends Canvas {
 		else { btnMinus.setState(0); }
 		if(btnPlus.isMouseOver(MOUSE_X, MOUSE_Y)){ btnPlus.setState(1); }
 		else { btnPlus.setState(0); }
-		if(btnGoFullScreen.isMouseOver(MOUSE_X, MOUSE_Y)){ btnGoFullScreen.setState(1); }
-		else { btnGoFullScreen.setState(0); }
-		if(btnGoWindowed.isMouseOver(MOUSE_X, MOUSE_Y)){ btnGoWindowed.setState(1); }
-		else { btnGoWindowed.setState(0); }
 		if(btnBack.isMouseOver(MOUSE_X, MOUSE_Y)){ btnBack.setState(1); }
 		else { btnBack.setState(0); }
 		

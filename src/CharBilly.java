@@ -9,7 +9,7 @@ public class CharBilly extends Character {
 	int respawnCountTime;
 	float speed = 220;
 	boolean haveKey = false;
-	int numShotsBone = 3;
+	int numShotsBone = 10;
 	Projectile proj;
 	boolean positionsMap = false;
 	float spawnX, spawnY;
@@ -47,38 +47,43 @@ public class CharBilly extends Character {
 		}
 		
 		if(!isHeadless) {
-		if((CanvasGame.B_KEY_FIRE) && fireTimer > fireRate){
+		if((CanvasGame.FIRE) && fireTimer > fireRate){
 			fireAnim += diffTime;
 			fireTimer = 0;
 			float vproj = 1000;
 			
-			// Se o player estiver andando, sua velocidade é somada a velocidade do projétil
-			if((CanvasGame.B_KEY_LEFT) || (CanvasGame.B_KEY_RIGHT)) {
-				vproj += speed;
-			}
+			float pX = x + centerX - CanvasGame.map.MapX;
+			float pY = y + centerY - CanvasGame.map.MapY;
 			
-			float vx = vproj * moveDirection;
-			proj = new ProjBone(x+centerX, y+centerY, vx/2, 0, bmpBone, this);
+			float dX = CanvasGame.MOUSE_X - pX;
+			float dY = CanvasGame.MOUSE_Y - pY;
+			
+			double angle = Math.atan2(dY, dX);
+			
+			float vX = (float)(vproj * Math.cos(angle));
+			float vY = (float)(vproj * Math.sin(angle));
+			
+			proj = new ProjBone(x + centerX, y + centerY, vX, vY, bmpBone, this);
 			CanvasGame.projectilesList.add(proj);
 			numShotsBone--;
 		}
 		
-		if((CanvasGame.B_KEY_JUMP) && onTheFloor) {
+		if((CanvasGame.JUMP) && onTheFloor) {
 			animeSpeed = 100;
 			jumpSpeed = 1100;
 			hasJumped = true;
 			if(moveDirection == 1) animation = 0  + animeLine;
 			if(moveDirection == -1) animation = 1  + animeLine;
 		}
-		if(!CanvasGame.B_KEY_JUMP) {
+		if(!CanvasGame.JUMP) {
 			jumpSpeed = jumpSpeed / 2;
 		}
-		if(CanvasGame.B_KEY_RIGHT) {
+		if(CanvasGame.RIGHT) {
 			animeSpeed = 100;
 			x += speed * diffTime / 1000.0f;
 			animation = 2 + animeLine;
 			moveDirection = 1;
-		} else if(CanvasGame.B_KEY_LEFT) {
+		} else if(CanvasGame.LEFT) {
 			animeSpeed = 100;
 			x -= speed * diffTime / 1000.0f;
 			animation = 3 + animeLine;

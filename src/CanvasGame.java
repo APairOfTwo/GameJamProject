@@ -29,7 +29,7 @@ public class CanvasGame extends Canvas {
 	public static ArrayList<Checkpoint> checkpoints = new ArrayList<Checkpoint>();
 	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	
-	public static boolean B_KEY_LEFT, B_KEY_RIGHT, B_KEY_JUMP, B_KEY_FIRE;
+	public static boolean LEFT, RIGHT, JUMP, FIRE;
 	public static boolean MOUSE_PRESSED;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
@@ -148,10 +148,9 @@ public class CanvasGame extends Canvas {
 	@Override
 	public void keyPressed(KeyEvent k){
 		int keyCode = k.getKeyCode();
-		if(keyCode == KeyEvent.VK_A)		{ B_KEY_LEFT = true; }
-		if(keyCode == KeyEvent.VK_D)		{ B_KEY_RIGHT = true; }
-		if(keyCode == KeyEvent.VK_W)		{ B_KEY_JUMP  = true; }
-		if(keyCode == KeyEvent.VK_SPACE)	{ B_KEY_FIRE  = true; }
+		if(keyCode == KeyEvent.VK_A)		{ LEFT = true; }
+		if(keyCode == KeyEvent.VK_D)		{ RIGHT = true; }
+		if(keyCode == KeyEvent.VK_W)		{ JUMP  = true; }
 		if(keyCode == KeyEvent.VK_F)	{ GamePanel.showFps = !GamePanel.showFps; }
 		if(keyCode == KeyEvent.VK_ESCAPE) {
 			if(CanvasPause.instance == null) {
@@ -164,10 +163,9 @@ public class CanvasGame extends Canvas {
 	@Override
 	public void keyReleased(KeyEvent k){
 		int keyCode = k.getKeyCode();
-		if(keyCode == KeyEvent.VK_A)		{ B_KEY_LEFT  = false; }
-		if(keyCode == KeyEvent.VK_D)		{ B_KEY_RIGHT = false; }
-		if(keyCode == KeyEvent.VK_W)		{ B_KEY_JUMP  = false; }
-		if(keyCode == KeyEvent.VK_SPACE)	{ B_KEY_FIRE  = false; }
+		if(keyCode == KeyEvent.VK_A)		{ LEFT  = false; }
+		if(keyCode == KeyEvent.VK_D)		{ RIGHT = false; }
+		if(keyCode == KeyEvent.VK_W)		{ JUMP  = false; }
 	}
 
 	@Override
@@ -182,6 +180,7 @@ public class CanvasGame extends Canvas {
 	@Override
 	public void mousePressed(MouseEvent m) {
 		MOUSE_PRESSED = true;
+		FIRE = true;
 		MOUSE_CLICK_X = m.getX();
 		MOUSE_CLICK_Y = m.getY();
 	}
@@ -189,13 +188,14 @@ public class CanvasGame extends Canvas {
 	@Override
 	public void mouseReleased(MouseEvent m) { 
 		MOUSE_PRESSED = false;
+		FIRE = false;
 	}
 	
 	public static void resetControls() {
-		B_KEY_LEFT = false;
-		B_KEY_RIGHT = false;
-		B_KEY_JUMP = false; 
-		B_KEY_FIRE = false;
+		LEFT = false;
+		RIGHT = false;
+		JUMP = false; 
+		FIRE = false;
 	}
 	
 	public static void setGameLevel(int levelId) {
