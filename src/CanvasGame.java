@@ -53,7 +53,7 @@ public class CanvasGame extends Canvas {
 	public static int deathCounter = 0;
 	public static int projectilesCounter = 0;
 	
-    private RainDrop[] rainDrops = new RainDrop[500];
+    private RainDrop[] rainDrops = new RainDrop[200];
 	
 	public CanvasGame(int levelId) {
 		instance = this;
@@ -61,7 +61,7 @@ public class CanvasGame extends Canvas {
 		//MainApplet.menuMusic.stop(); TODO
 		
 		charsetBilly = GamePanel.loadImage("sprites/nerd.png");
-		charsetEnemyBug = GamePanel.loadImage("sprites/demon.png");
+		charsetEnemyBug = GamePanel.loadImage("sprites/bug.png");
 		charsetEnemyPlatform = GamePanel.loadImage("sprites/gargoyle5.png");
 		imagePlatform = GamePanel.loadImage("sprites/platform.png");
 		backBranco = GamePanel.loadImage("backgrounds/background_branco.png");

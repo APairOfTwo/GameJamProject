@@ -15,9 +15,9 @@ public class CanvasMainMenu extends Canvas {
 	public CanvasMainMenu() {
 		instance = this;
 		background = GamePanel.loadImage("backgrounds/tela_inicial.png");
-		btnNewGame = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2, "buttons/botaoIniciar.png", "buttons/botaoIniciar.png");
-		btnOptions = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/botaoSobre.png", "buttons/botaoSobre.png");
-		btnExit = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 225, "buttons/botaoSair.png", "buttons/botaoSair.png");
+		btnNewGame = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2, "buttons/iniciarOver.png", "buttons/botaoIniciar.png");
+		btnOptions = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/sobreOver.png", "buttons/botaoSobre.png");
+		btnExit = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 225, "buttons/sairOver.png", "buttons/botaoSair.png");
 	}
 	
 	@Override
@@ -40,7 +40,6 @@ public class CanvasMainMenu extends Canvas {
 		}
 		
 		if(MOUSE_PRESSED && btnOptions.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
-			GamePanel.canvasActive = new CanvasOptions();
 			MOUSE_PRESSED = false;
 		}
 		

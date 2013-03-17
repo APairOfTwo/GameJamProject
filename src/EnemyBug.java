@@ -10,7 +10,7 @@ public class EnemyBug extends Character {
 	Projectile proj;
 	
 	public EnemyBug(float x, float y, BufferedImage charset, int charsetX, int charsetY) {
-		super(x, y, charset, charsetX, charsetY, 100, 70, 4);
+		super(x, y, charset, charsetX, charsetY, 39, 30, 1);
 		speed = DEFAULT_SPEED;
 	}
 
@@ -45,23 +45,13 @@ public class EnemyBug extends Character {
 		velX = speed * diffTime / 1000.0f;
 		velY = speed * diffTime / 1000.0f;
 		
-		if(proj != null) {
-			projDx = proj.x - (x + centerX);
-			projDy = proj.y - (y + centerY);
-			projDist = Math.hypot(projDx, projDy);
-		}
-		
 		if(moveDirection == 1) {
-			animation = 1;
 			x += speed * diffTime / 1000.0f;
 		} else if(moveDirection == -1) {
-			animation = 0;
 			x -= speed * diffTime / 1000.0f;
-		} else {
-			timeAnimating = 0;
 		}
 		
-		if(floorCollision((int)((x+40)/16), (int)((x+55)/16), (int)((x+70)/16), (int)((y+67)/16), (int)((y+66)/16), (int)((y+65)/16))) {
+		if(floorCollision((int)((x+40)/16), (int)((x+35)/16), (int)((x+30)/16), (int)((y+37)/16), (int)((y+36)/16), (int)((y+35)/16))) {
 			y = oldY;
 			if((int)oldY % 16 != 0) {
 				y -= 1;
@@ -71,15 +61,16 @@ public class EnemyBug extends Character {
 			onTheFloor = false;
 		}
 		
-		if(lateralCollision((int)((x+39)/16), (int)((x+71)/16), (int)((y+50)/16), (int)((y+60)/16), (int)((y+40)/16))) {
+		if(lateralCollision((int)((x+39)/16), (int)((x+35)/16), (int)((y+22)/16), (int)((y+20)/16), (int)((y+15)/16))) {
 			x = oldX;
 			if(fireTimer > changeDirectionRate) {
 				fireTimer = 0;
 				moveDirection *= -1;
+				System.out.println("aqui");
 			}
 		}
 		
-		if(spykeCollision((int)((x+40)/16), (int)((x+70)/16), (int)((y+65)/16), (int)((y+30)/16))) {
+		if(spykeCollision((int)((x+40)/16), (int)((x+50)/16), (int)((y+35)/16), (int)((y+20)/16))) {
 			bloodAngle = Math.atan2(100, 1);
 			bloodAngle += Math.PI;
 			for(int i = 0; i < 20; i++) {
