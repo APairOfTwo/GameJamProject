@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 
 public class CharBilly extends Character {
-	int fireRate = 500;
+	int fireRate = 300;
 	int respawnCountTime;
 	float speed = 220;
 	Projectile proj;

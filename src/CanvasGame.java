@@ -69,7 +69,7 @@ public class CanvasGame extends Canvas {
 	public CanvasGame(int levelId) {
 		instance = this;
 		
-		//MainApplet.menuMusic.stop(); TODO
+		MainApplet.menuMusic.stop();
 		
 		charsetBilly = GamePanel.loadImage("sprites/nerd.png");
 		charsetBillyPeB = GamePanel.loadImage("sprites/nerdPeB.png");
@@ -179,7 +179,7 @@ public class CanvasGame extends Canvas {
 			if(loadTime >= 2000) {
 				loadTime = 0;
 				loading = false;
-				//MainApplet.music1.loop(); //TODO
+				MainApplet.music1.loop(); 
 			}
 		}
 	}

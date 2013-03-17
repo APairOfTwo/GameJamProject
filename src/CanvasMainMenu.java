@@ -17,6 +17,7 @@ public class CanvasMainMenu extends Canvas {
 		background = GamePanel.loadImage("backgrounds/menuBackground.png");
 		btnNewGame = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/btnIniciarOn.png", "buttons/btnIniciarOff.png");
 		btnExit = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 225, "buttons/btnSairOn.png", "buttons/btnSairOff.png");
+		MainApplet.menuMusic.loop();
 	}
 	
 	@Override
