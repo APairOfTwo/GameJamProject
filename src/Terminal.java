@@ -33,9 +33,9 @@ public class Terminal extends Sprite {
 		this.msgWidth = (msgX + checkpointMsg.getWidth());
 		this.msgHeight = (msgY + checkpointMsg.getHeight());
 		this.mapBlockX = (x+GamePanel.PANEL_WIDTH/4);
-		this.mapBlockY = 0;
+		this.mapBlockY = (y-500);
 		this.mapBlockWidth = ((x + GamePanel.PANEL_WIDTH/4) + GamePanel.PANEL_WIDTH / 2);
-		this.mapBlockHeight = (GamePanel.PANEL_HEIGHT + 500);
+		this.mapBlockHeight = ((y-500) + 1000);
 		this.mapBlock = new Rectangle(mapBlockX, mapBlockY, mapBlockWidth, mapBlockHeight);
 		
 	}
@@ -53,6 +53,7 @@ public class Terminal extends Sprite {
 		
 		if(!isActive && CanvasGame.billy.getBounds().intersects(mapBlockX-CanvasGame.map.MapX, mapBlockY-CanvasGame.map.MapY, mapBlockWidth-CanvasGame.map.MapX, mapBlockHeight-CanvasGame.map.MapY)) {
 			CanvasGame.billy.x = CanvasGame.billy.oldX;
+			System.out.println("colidiu");
 		}
 
 		if(showMsg) {
