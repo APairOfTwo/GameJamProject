@@ -14,13 +14,15 @@ public class CharBilly extends Character {
 	int fireAnim;
 	int animeLine = 0;
 	public static BufferedImage bmpBone;
+	public static BufferedImage bmpBonePeB;
 	BufferedImage deadMsg = GamePanel.loadImage("sprites/msgDeathBilly.png");
 	
-	public CharBilly(float x, float y, BufferedImage charset, int charsetX, int charsetY) {
-		super(x, y, charset, charsetX, charsetY, 43, 63, 3);
+	public CharBilly(float x, float y, BufferedImage charset, BufferedImage charsetPeB, int charsetX, int charsetY) {
+		super(x, y, charset, charsetPeB, charsetX, charsetY, 43, 63, 3);
 		this.spawnX = x;
 		this.spawnY = y;
 		bmpBone = GamePanel.loadImage("sprites/tiro.png");
+		bmpBone = GamePanel.loadImage("sprites/tiroPeB.png");
 	}
 
 	@Override

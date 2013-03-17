@@ -15,12 +15,16 @@ public class CanvasGame extends Canvas {
 	public static TileMap map;
 	
 	public static BufferedImage charsetBilly;
+	public static BufferedImage charsetBillyPeB;
 	public static BufferedImage charsetEnemyBug;
+	public static BufferedImage charsetEnemyBugPeB;
 	public static BufferedImage charsetEnemyPlatform;
+	public static BufferedImage charsetEnemyPlatformPeB;
 	public static BufferedImage imagePlatform;
 	public static BufferedImage tileset;
-	public static BufferedImage backBranco;
+	public static BufferedImage tilesetPeB;
 	public static BufferedImage backDay;
+	public static BufferedImage backDayPeB;
 	public static BufferedImage backNight;
 	public BufferedImage loadingScreen = GamePanel.loadImage("backgrounds/loading_background.png");
 	
@@ -32,6 +36,7 @@ public class CanvasGame extends Canvas {
 	
 	public static String strMap01 = new String("maps/mapacompleto.map");
 	public static String strTileset01 = new String("maps/tileset2222.png");
+	public static String strTilesetPeB = new String("maps/tilesetPeB.png");
 	public static String strElements01 = new String("csv/mapa1.csv");
 	
 	Random rand = new Random();
@@ -42,7 +47,7 @@ public class CanvasGame extends Canvas {
 	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	
 	public static boolean LEFT, RIGHT, JUMP, FIRE, INTERACTION;
-	public static boolean enableJump, enableFire;
+	public static boolean enableJump, enableFire, enableColor;
 	public static boolean MOUSE_PRESSED;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
@@ -62,11 +67,13 @@ public class CanvasGame extends Canvas {
 		//MainApplet.menuMusic.stop(); TODO
 		
 		charsetBilly = GamePanel.loadImage("sprites/nerd.png");
+		charsetBillyPeB = GamePanel.loadImage("sprites/nerdPeB.png");
 		charsetEnemyBug = GamePanel.loadImage("sprites/bug.png");
+		charsetEnemyBugPeB = GamePanel.loadImage("sprites/bugPeB.png");
 		charsetEnemyPlatform = GamePanel.loadImage("sprites/gargoyle5.png");
 		imagePlatform = GamePanel.loadImage("sprites/platform.png");
-		backBranco = GamePanel.loadImage("backgrounds/background_branco.png");
 		backDay = GamePanel.loadImage("backgrounds/day_sky.png");
+		backDayPeB = GamePanel.loadImage("backgrounds/day_skyPeB.png");
 		backNight = GamePanel.loadImage("backgrounds/night_sky.png");
 		
 		MOUSE_X = 0;
@@ -76,6 +83,7 @@ public class CanvasGame extends Canvas {
 		MOUSE_PRESSED = false;
 		enableJump = false;
 		enableFire = false;
+		enableColor = false;
 		loading = true;
         createRainDrops();
 	}

@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class Character extends Sprite {
 	BufferedImage charset = null;
+	BufferedImage charsetPeB = null;
 	int frame = 0;
 	int animation = 0;
 	int animeSpeed = 100;
@@ -46,11 +47,12 @@ public class Character extends Sprite {
 	float vX;
 	float vY;
 	
-	public Character(float x, float y, BufferedImage charset, int charsetX, int charsetY, int frameWidth, 
+	public Character(float x, float y, BufferedImage charset, BufferedImage charsetPeB, int charsetX, int charsetY, int frameWidth, 
 						int frameHeight, int numberOfFrames) {
 		this.x = x;
 		this.y = y;
 		this.charset = charset;
+		this.charsetPeB = charsetPeB;
 		this.charsetX = charsetX;
 		this.charsetY = charsetY;
 		this.frameWidth = frameWidth;
@@ -77,9 +79,15 @@ public class Character extends Sprite {
 
 	@Override
 	public void selfDraws(Graphics2D dbg, int mapX, int mapY) {
-		dbg.drawImage(charset, (int)(x-mapX), (int)(y-mapY), (int)((x+frameWidth)-mapX), (int)((y+frameHeight)-mapY),
+		if(CanvasGame.enableColor) {
+			dbg.drawImage(charset, (int)(x-mapX), (int)(y-mapY), (int)((x+frameWidth)-mapX), (int)((y+frameHeight)-mapY),
+					(frameWidth*frame+charsetX*charsetWidth), (frameHeight*animation+charsetY*charsetHeight),
+					(frameWidth*frame+frameWidth+charsetX*charsetWidth), (frameHeight*animation+frameHeight+charsetY*charsetHeight), null);
+		} else {
+			dbg.drawImage(charsetPeB, (int)(x-mapX), (int)(y-mapY), (int)((x+frameWidth)-mapX), (int)((y+frameHeight)-mapY),
 				(frameWidth*frame+charsetX*charsetWidth), (frameHeight*animation+charsetY*charsetHeight),
 				(frameWidth*frame+frameWidth+charsetX*charsetWidth), (frameHeight*animation+frameHeight+charsetY*charsetHeight), null);
+		}
 	}
 	
 	

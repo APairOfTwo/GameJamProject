@@ -9,8 +9,8 @@ public class EnemyBug extends Character {
 	private int changeDirectionRate = 200;
 	Projectile proj;
 	
-	public EnemyBug(float x, float y, BufferedImage charset, int charsetX, int charsetY) {
-		super(x, y, charset, charsetX, charsetY, 39, 30, 1);
+	public EnemyBug(float x, float y, BufferedImage charset, BufferedImage charsetPeB, int charsetX, int charsetY) {
+		super(x, y, charset, charsetPeB, charsetX, charsetY, 39, 30, 1);
 		speed = DEFAULT_SPEED;
 	}
 

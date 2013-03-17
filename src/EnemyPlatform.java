@@ -11,8 +11,8 @@ public class EnemyPlatform extends Character {
 	private Random rand = new Random();
 	BufferedImage imagePlatform = null;
 	
-	public EnemyPlatform(float x, float y, BufferedImage charset, BufferedImage imagePlatform, int charsetX, int charsetY) {
-		super(x, y, charset, charsetX, charsetY, 110, 120, 4);
+	public EnemyPlatform(float x, float y, BufferedImage charset, BufferedImage charsetPeB, BufferedImage imagePlatform, int charsetX, int charsetY) {
+		super(x, y, charset, charsetPeB, charsetX, charsetY, 110, 120, 4);
 		this.imagePlatform = imagePlatform;		
 		int temp = rand.nextInt(2);
 		if(temp == 0) moveDirection = -1;

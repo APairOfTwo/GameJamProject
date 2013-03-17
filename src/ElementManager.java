@@ -42,18 +42,18 @@ public class ElementManager {
 		for(Element ele : this.elementsList) {
 			switch (ele.itemId) {
 			case 1:
-				CanvasGame.billy = new CharBilly(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetBilly, 0, 0);
+				CanvasGame.billy = new CharBilly(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetBilly, CanvasGame.charsetBillyPeB, 0, 0);
 				break;
 			case 3:
 				Terminal check = new Terminal(ele.blockX<<4, ele.blockY<<4);
 				CanvasGame.checkpoints.add(check);
 				break;
 			case 4:
-				Character bug = new EnemyBug(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetEnemyBug, 0, 0);
+				Character bug = new EnemyBug(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetEnemyBug, CanvasGame.charsetEnemyBugPeB, 0, 0);
 				CanvasGame.enemiesList.add(bug);
 				break;
 			case 5:
-				Character platform = new EnemyPlatform(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetEnemyPlatform, CanvasGame.imagePlatform, 0, 0);
+				Character platform = new EnemyPlatform(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetEnemyPlatform, CanvasGame.charsetEnemyPlatformPeB, CanvasGame.imagePlatform, 0, 0);
 				CanvasGame.enemiesList.add(platform);
 				break;
 //			case 6:
