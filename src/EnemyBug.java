@@ -61,12 +61,11 @@ public class EnemyBug extends Character {
 			onTheFloor = false;
 		}
 		
-		if(lateralCollision((int)((x+39)/16), (int)((x+35)/16), (int)((y+22)/16), (int)((y+20)/16), (int)((y+15)/16))) {
+		if(lateralCollision((int)((x)/16), (int)((x+30)/16), (int)((y+22)/16), (int)((y+20)/16), (int)((y+15)/16))) {
 			x = oldX;
 			if(fireTimer > changeDirectionRate) {
 				fireTimer = 0;
 				moveDirection *= -1;
-				System.out.println("aqui");
 			}
 		}
 		
@@ -82,6 +81,25 @@ public class EnemyBug extends Character {
 			}
 			isAlive = false;
 		}
+		
+		
+		
+		if(this.getBounds().intersects(CanvasGame.billy.getBounds())) {
+			CanvasGame.deathCounter++;
+			CanvasGame.billy.isAlive = false;
+			bloodAngle = Math.atan2(100, 1);
+			bloodAngle += Math.PI;
+			for(int i = 0; i < 20; i++) {
+				bloodAuxAngle = bloodAngle - (Math.PI/4) + ((Math.PI/2) * Math.random());
+				vel = (float)(50 + 50 * Math.random());
+				vX = (float)(Math.cos(bloodAuxAngle) * vel);
+				vY = (float)(Math.sin(bloodAuxAngle) * vel);
+				CanvasGame.effectsList.add(new Effect(x+frameWidth/2, y+frameHeight/2, vX, vY, 600, 255, 0, 0));
+			}
+		}
+		
+		
+		
 		
 		for(Element e : CanvasGame.gameElements.elementsList) {
 			if(e.itemId == 8) {
@@ -101,7 +119,7 @@ public class EnemyBug extends Character {
 	}
 	
 	public Rectangle getBounds() {
-		Rectangle r = new Rectangle((int)(x-CanvasGame.map.MapX+23), (int)(y-CanvasGame.map.MapY+30), 53, 40);
+		Rectangle r = new Rectangle((int)(x-CanvasGame.map.MapX), (int)(y-CanvasGame.map.MapY), 40, 30);
 		return r;
 	}
 }

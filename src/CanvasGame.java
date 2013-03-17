@@ -37,7 +37,7 @@ public class CanvasGame extends Canvas {
 	public static String strMap01 = new String("maps/mapacompleto.map");
 	public static String strTileset01 = new String("maps/tileset2222.png");
 	public static String strTilesetPeB = new String("maps/tilesetPeB.png");
-	public static String strElements01 = new String("csv/mapa1.csv");
+	public static String strElements01 = new String("csv/teste2.csv");
 	
 	Random rand = new Random();
 	
@@ -76,7 +76,7 @@ public class CanvasGame extends Canvas {
 		charsetBillyPeB = GamePanel.loadImage("sprites/nerdPeB.png");
 		charsetEnemyBug = GamePanel.loadImage("sprites/bug.png");
 		charsetEnemyBugPeB = GamePanel.loadImage("sprites/bugPeB.png");
-		charsetEnemyPlatform = GamePanel.loadImage("sprites/gargoyle5.png");
+		charsetEnemyPlatform = GamePanel.loadImage("sprites/bugPlatform.png");
 		imagePlatform = GamePanel.loadImage("sprites/platform.png");
 		backDay = GamePanel.loadImage("backgrounds/day_sky.png");
 		backDayPeB = GamePanel.loadImage("backgrounds/day_skyPeB.png");
@@ -128,13 +128,13 @@ public class CanvasGame extends Canvas {
 					numBugsCorrected++;
 				}
 			}
-			
+
 			if(checkpoints.get(0).isActive) { enableJump = true; }
 			if(checkpoints.get(1).isActive) { enableFire = true; checkpoints.get(1).featureMsg = GamePanel.loadImage("sprites/bugFixMsg.png"); }
 			if(checkpoints.get(2).isActive) { enableColor = true; }
 			if(checkpoints.get(3).isActive) { enableTransition = true; }
 			if(checkpoints.get(4).isActive) { enableRain = true; }
-			
+
 			if(!enableTilesetColor && enableColor) {
 				map.TileSet = GamePanel.loadImage(strTileset01);
 				enableTilesetColor = true;

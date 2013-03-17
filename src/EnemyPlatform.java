@@ -5,15 +5,13 @@ import java.util.Random;
 
 
 public class EnemyPlatform extends Character {
-	public static int BUG_MODE = 0;
-	public static int PLATFORM_MODE = 1;
-	public int activeMode = BUG_MODE;
+	boolean isPlat = false;
 	private Random rand = new Random();
 	BufferedImage imagePlatform = null;
 	
 	public EnemyPlatform(float x, float y, BufferedImage charset, BufferedImage charsetPeB, BufferedImage imagePlatform, int charsetX, int charsetY) {
-		super(x, y, charset, charsetPeB, charsetX, charsetY, 110, 120, 4);
-		this.imagePlatform = imagePlatform;		
+		super(x, y, charset, charsetPeB, charsetX, charsetY, 59, 35, 1);
+		this.imagePlatform = imagePlatform;
 		int temp = rand.nextInt(2);
 		if(temp == 0) moveDirection = -1;
 		else moveDirection = 1;
@@ -23,7 +21,21 @@ public class EnemyPlatform extends Character {
 	public void selfSimulates(long diffTime){	
 		super.selfSimulates(diffTime);
 		
-		if(this.activeMode == BUG_MODE) {
+		
+		if(!isPlat && this.getBounds().intersects(CanvasGame.billy.getBounds())) {
+			CanvasGame.deathCounter++;
+			CanvasGame.billy.isAlive = false;
+			bloodAngle = Math.atan2(100, 1);
+			bloodAngle += Math.PI;
+			for(int i = 0; i < 20; i++) {
+				bloodAuxAngle = bloodAngle - (Math.PI/4) + ((Math.PI/2) * Math.random());
+				vel = (float)(50 + 50 * Math.random());
+				vX = (float)(Math.cos(bloodAuxAngle) * vel);
+				vY = (float)(Math.sin(bloodAuxAngle) * vel);
+				CanvasGame.effectsList.add(new Effect(x+frameWidth/2, y+frameHeight/2, vX, vY, 600, 255, 0, 0));
+			}
+		
+		if(!this.isPlat) {
 			if(moveDirection == 1) {
 				animation = 1;
 			} else if(moveDirection == -1) {
@@ -36,22 +48,20 @@ public class EnemyPlatform extends Character {
 				CanvasGame.billy.y = CanvasGame.billy.oldY;
 				CanvasGame.billy.onTheFloor = true;
 			}
-		}
+		}}
 	}
 	
 	@Override
 	public void hitByProjectile() {
-		if(this.activeMode == BUG_MODE) {
-			this.activeMode = PLATFORM_MODE;
-		}
+		this.isPlat = true;
 	}
 	
 	@Override
 	public void selfDraws(Graphics2D dbg, int mapX, int mapY) {
-		if(this.activeMode == BUG_MODE)
+		if(!this.isPlat)
 			super.selfDraws(dbg, mapX, mapY);
 		else {
-			dbg.drawImage(imagePlatform, (int)(x-mapX), (int)(y-mapY), (int)((x+imagePlatform.getWidth())-mapX), (int)((y+imagePlatform.getHeight())-mapY),
+			dbg.drawImage(imagePlatform, (int)(x-mapX), (int)((y+10)-mapY), (int)((x+imagePlatform.getWidth())-mapX), (int)((y+imagePlatform.getHeight()+10)-mapY),
 					(0), (0), imagePlatform.getWidth(), imagePlatform.getHeight(), null);
 		}
 	}
