@@ -23,7 +23,6 @@ public class EnemyPlatform extends Character {
 		
 		
 		if(!isPlat && this.getBounds().intersects(CanvasGame.billy.getBounds())) {
-			CanvasGame.deathCounter++;
 			CanvasGame.billy.isAlive = false;
 			bloodAngle = Math.atan2(100, 1);
 			bloodAngle += Math.PI;

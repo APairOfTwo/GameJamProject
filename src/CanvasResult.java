@@ -19,7 +19,6 @@ public class CanvasResult extends Canvas {
 		background = GamePanel.loadImage("backgrounds/finalBackground.png");
 		btnRetry = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/btnReiniciarOn.png", "buttons/btnReiniciarOff.png");
 		
-		numberOfDeaths = CanvasGame.deathCounter;
 		numberOfProjectiles = CanvasGame.projectilesCounter;
 	}
 	
@@ -29,7 +28,6 @@ public class CanvasResult extends Canvas {
 		else { btnRetry.setState(0); }
 		
 		if(MOUSE_PRESSED && btnRetry.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
-			CanvasGame.deathCounter = 0;
 			CanvasGame.projectilesCounter = 0;
 			GamePanel.changeMap(GamePanel.levelId);
 			MOUSE_PRESSED = false;

@@ -56,10 +56,9 @@ public class CanvasGame extends Canvas {
 	public int mapPositionX;
 	public int mapPositionY;
 	public int respawnTime = 2000;
-	public static int deathCounter = 0;
 	public static int projectilesCounter = 0;
 	
-    private RainDrop[] rainDrops = new RainDrop[200];
+    private RainDrop[] rainDrops = new RainDrop[100];
     
     public static int numBugs = 0;
     public static int numBugsCorrected = 0;

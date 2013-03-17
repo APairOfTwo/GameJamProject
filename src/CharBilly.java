@@ -139,7 +139,6 @@ public class CharBilly extends Character {
 				vY = (float)(Math.sin(bloodAuxAngle) * vel);
 				CanvasGame.effectsList.add(new Effect(x+frameWidth/2, y+frameHeight/2, vX, vY, 600, 255, 0, 0));
 			}
-			CanvasGame.deathCounter++;
 			isAlive = false;
 		}
 		

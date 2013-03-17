@@ -29,7 +29,6 @@ public class CanvasFinal extends Canvas {
 		else { btnExit.setState(0); }
 		
 		if(MOUSE_PRESSED && btnMainMenu.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
-			CanvasGame.deathCounter = 0;
 			CanvasGame.projectilesCounter = 0;
 			GamePanel.canvasActive = new CanvasMainMenu();
 			MOUSE_PRESSED = false;
