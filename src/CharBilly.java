@@ -17,7 +17,7 @@ public class CharBilly extends Character {
 	BufferedImage deadMsg = GamePanel.loadImage("sprites/msgDeathBilly.png");
 	
 	public CharBilly(float x, float y, BufferedImage charset, int charsetX, int charsetY) {
-		super(x, y, charset, charsetX, charsetY, 62, 64, 4);
+		super(x, y, charset, charsetX, charsetY, 43, 63, 3);
 		this.spawnX = x;
 		this.spawnY = y;
 		bmpBone = GamePanel.loadImage("sprites/tiro.png");
@@ -61,45 +61,30 @@ public class CharBilly extends Character {
 			}
 			
 			if((CanvasGame.JUMP) && onTheFloor) {
-				animeSpeed = 100;
+				animeSpeed = 150;
 				jumpSpeed = 1100;
 				hasJumped = true;
-				if(moveDirection == 1) animation = 0  + animeLine;
-				if(moveDirection == -1) animation = 1  + animeLine;
+				if(moveDirection == 1) animation = 1 + animeLine;
+				if(moveDirection == -1) animation = 3 + animeLine;
 			}
 			if(!CanvasGame.JUMP) {
 				jumpSpeed = jumpSpeed / 2;
 			}
 			if(CanvasGame.RIGHT) {
-				animeSpeed = 100;
+				animeSpeed = 150;
 				x += speed * diffTime / 1000.0f;
-				animation = 2 + animeLine;
+				animation = 1 + animeLine;
 				moveDirection = 1;
 			} else if(CanvasGame.LEFT) {
-				animeSpeed = 100;
+				animeSpeed = 150;
 				x -= speed * diffTime / 1000.0f;
 				animation = 3 + animeLine;
 				moveDirection = -1;
 			} else {
 				if(moveDirection == 1) {
-					animeSpeed = 200;
-					animation = 0 + animeLine;
+					frame = 1 + animeLine;
 				} else if(moveDirection == -1) {
-					animeSpeed = 200;
-					animation = 1 + animeLine;
-				}
-			}
-			
-			if(fireAnim != 0) {
-				fireAnim += diffTime;
-				animeSpeed = 100;
-				if(fireAnim >= 420) {
-					fireAnim = 0;
-				}
-				if(moveDirection == 1) {
-					animation = 4 + animeLine;
-				} else {
-					animation = 5 + animeLine;
+					frame = 1;
 				}
 			}
 			
@@ -113,9 +98,9 @@ public class CharBilly extends Character {
 			}
 		} else {
 			if(moveDirection == 1) {
-				animation = 4 + animeLine;
+				animation = 1 + animeLine;
 			} else {
-				animation = 5 + animeLine;
+				animation = 3 + animeLine;
 			}
 		}
 		

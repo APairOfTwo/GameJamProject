@@ -60,7 +60,7 @@ public class CanvasGame extends Canvas {
 		
 		//MainApplet.menuMusic.stop(); TODO
 		
-		charsetBilly = GamePanel.loadImage("sprites/billy.png");
+		charsetBilly = GamePanel.loadImage("sprites/nerd.png");
 		charsetEnemyBug = GamePanel.loadImage("sprites/demon.png");
 		charsetEnemyPlatform = GamePanel.loadImage("sprites/gargoyle5.png");
 		imagePlatform = GamePanel.loadImage("sprites/platform.png");
