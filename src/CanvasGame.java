@@ -303,7 +303,7 @@ public class CanvasGame extends Canvas {
 			projectilesList.clear();
 			checkpoints.clear();
 			gameElements.elementsList.clear();
-			tileset = GamePanel.loadImage(strTileset01);
+			tileset = GamePanel.loadImage(strTilesetPeB);
 			map = new TileMap(CanvasGame.tileset, (GamePanel.PANEL_WIDTH>>4)+(((GamePanel.PANEL_WIDTH&0x000f)>0)?1:0), (GamePanel.PANEL_HEIGHT>>4)+(((GamePanel.PANEL_HEIGHT%16)>0)?1:0));
 			map.OpenMap(strMap01);
 			gameElements = new ElementManager(strElements01);
