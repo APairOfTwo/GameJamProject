@@ -14,7 +14,7 @@ import java.io.InputStream;
 
 public class TileMap {
 
-	public static Image TileSet = null;
+	public Image TileSet = null;
 	int MapX;
 	int MapY;
 	int NTileX, NTileY;

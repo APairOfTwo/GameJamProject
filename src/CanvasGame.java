@@ -47,7 +47,7 @@ public class CanvasGame extends Canvas {
 	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	
 	public static boolean LEFT, RIGHT, JUMP, FIRE, INTERACTION;
-	public static boolean enableJump, enableFire, enableColor, enableRain, enableTransition;
+	public static boolean enableJump, enableFire, enableColor, enableRain, enableTransition, enableTilesetColor;
 	public static boolean MOUSE_PRESSED;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
@@ -127,6 +127,11 @@ public class CanvasGame extends Canvas {
 			if(checkpoints.get(2).isActive) { enableColor = true; }
 			if(checkpoints.get(3).isActive) { enableTransition = true; }
 			if(checkpoints.get(4).isActive) { enableRain = true; }
+			
+			if(!enableTilesetColor && enableColor) {
+				map.TileSet = GamePanel.loadImage(strTileset01);
+				enableTilesetColor = true;
+			}
 			
 			for(Terminal c : checkpoints) {
 				c.selfSimulates(diffTime);
