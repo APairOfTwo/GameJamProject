@@ -47,7 +47,7 @@ public class CanvasGame extends Canvas {
 	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	
 	public static boolean LEFT, RIGHT, JUMP, FIRE, INTERACTION;
-	public static boolean enableJump, enableFire, enableColor;
+	public static boolean enableJump, enableFire, enableColor, enableRain, enableTransition;
 	public static boolean MOUSE_PRESSED;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
@@ -83,6 +83,8 @@ public class CanvasGame extends Canvas {
 		MOUSE_PRESSED = false;
 		enableJump = false;
 		enableFire = false;
+		enableRain = false;
+		enableTransition = false;
 		enableColor = false;
 		loading = true;
         createRainDrops();
@@ -122,6 +124,9 @@ public class CanvasGame extends Canvas {
 			
 			if(checkpoints.get(0).isActive) { enableJump = true; }
 			if(checkpoints.get(1).isActive) { enableFire = true; }
+			if(checkpoints.get(2).isActive) { enableColor = true; }
+			if(checkpoints.get(3).isActive) { enableTransition = true; }
+			if(checkpoints.get(4).isActive) { enableRain = true; }
 			
 			for(Terminal c : checkpoints) {
 				c.selfSimulates(diffTime);
@@ -144,18 +149,21 @@ public class CanvasGame extends Canvas {
 				}
 			}
 			
-			decreaseTimeTick += diffTime;
-			if(decreaseTimeTick >= 500) {
-				decreaseTimeTick = 0;
-				if(descTime) {
-					alpha -= 0.01f;
-				} else {
-					alpha += 0.01f;
-				}
-				if(alpha < 0.01 || alpha >= 1){
-					descTime = !descTime;
+			if(enableTransition) {
+				decreaseTimeTick += diffTime;
+				if(decreaseTimeTick >= 500) {
+					decreaseTimeTick = 0;
+					if(descTime) {
+						alpha -= 0.01f;
+					} else {
+						alpha += 0.01f;
+					}
+					if(alpha < 0.01 || alpha >= 1){
+						descTime = !descTime;
+					}
 				}
 			}
+
 		} else {
 			loadTime += diffTime;
 			if(loadTime >= 2000) {
@@ -167,16 +175,24 @@ public class CanvasGame extends Canvas {
 	}
 	
 	@Override
-	public void selfDraws(Graphics2D dbg){
-		dbg.drawImage(backNight, 0, 0, null);
-		
-        comp = AlphaComposite.getInstance(rule , alpha);
-        dbg.setComposite(comp);
-		
-        dbg.drawImage(backDay, 0, 0, null);
-        
-        comp = AlphaComposite.getInstance(rule , 1f);
-        dbg.setComposite(comp);
+	public void selfDraws(Graphics2D dbg) {
+		if(enableTransition) {
+			dbg.drawImage(backNight, 0, 0, null);
+			
+	        comp = AlphaComposite.getInstance(rule , alpha);
+	        dbg.setComposite(comp);
+			
+	        dbg.drawImage(backDay, 0, 0, null);
+	        
+	        comp = AlphaComposite.getInstance(rule , 1f);
+	        dbg.setComposite(comp);
+		} else {
+			if(enableColor) {
+				dbg.drawImage(backDay, 0, 0, null);
+			} else {
+				dbg.drawImage(backDayPeB, 0, 0, null);
+			}
+		}
 
 		map.selfDraws(dbg);
 		
@@ -195,12 +211,14 @@ public class CanvasGame extends Canvas {
 		
 		billy.selfDraws(dbg, map.MapX, map.MapY);
 		
-        for(int i = 0; i< rainDrops.length; ++i) {
-        	dbg.setColor(Color.WHITE);
-        	rainDrops[i].selfDraws(dbg, map.MapX, map.MapY);
-            if(rainDrops[i].x > GamePanel.PANEL_WIDTH || rainDrops[i].y > GamePanel.PANEL_HEIGHT)
-            	createRainDrop(i);
-        }
+		if(enableRain) {
+	        for(int i = 0; i< rainDrops.length; ++i) {
+	        	dbg.setColor(Color.WHITE);
+	        	rainDrops[i].selfDraws(dbg, map.MapX, map.MapY);
+	            if(rainDrops[i].x > GamePanel.PANEL_WIDTH || rainDrops[i].y > GamePanel.PANEL_HEIGHT)
+	            	createRainDrop(i);
+	        }
+		}
 		
 		if(loading) {
 			dbg.setColor(Color.BLACK);
@@ -215,7 +233,7 @@ public class CanvasGame extends Canvas {
 		if(keyCode == KeyEvent.VK_A)		{ LEFT = true; }
 		if(keyCode == KeyEvent.VK_D)		{ RIGHT = true; }
 		if(keyCode == KeyEvent.VK_W)		{ JUMP  = true; }
-		if(keyCode == KeyEvent.VK_CONTROL)		{ INTERACTION  = true; }
+		if(keyCode == KeyEvent.VK_CONTROL)		{ INTERACTION  = true;}
 		if(keyCode == KeyEvent.VK_F)	{ GamePanel.showFps = !GamePanel.showFps; }
 		if(keyCode == KeyEvent.VK_ESCAPE) {
 			if(CanvasPause.instance == null) {
@@ -273,8 +291,8 @@ public class CanvasGame extends Canvas {
     }
 	
     public void createRainDrop(int index) {
-    	int ranX = (int) (Math.random() * GamePanel.PANEL_WIDTH);
-        int ranY = (int) (Math.random() * GamePanel.PANEL_HEIGHT);
+    	int ranX = (int) (Math.random() * (GamePanel.PANEL_WIDTH+400)-400);
+        int ranY = (int) (0);
         int ranVel = (int) (Math.random() * 10);
         rainDrops[index] = new RainDrop(ranX, ranY, ranVel);
     }
