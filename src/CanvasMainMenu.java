@@ -14,10 +14,10 @@ public class CanvasMainMenu extends Canvas {
 	
 	public CanvasMainMenu() {
 		instance = this;
-		background = GamePanel.loadImage("backgrounds/mainMenu_background.png");
-		btnNewGame = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2, "buttons/btnNewOn.png", "buttons/btnNewOff.png");
-		btnOptions = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/btnOptionsOn.png", "buttons/btnOptionsOff.png");
-		btnExit = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 225, "buttons/btnExitOn.png", "buttons/btnExitOff.png");
+		background = GamePanel.loadImage("backgrounds/tela_inicial.png");
+		btnNewGame = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2, "buttons/botaoIniciar.png", "buttons/botaoIniciar.png");
+		btnOptions = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/botaoSobre.png", "buttons/botaoSobre.png");
+		btnExit = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 225, "buttons/botaoSair.png", "buttons/botaoSair.png");
 	}
 	
 	@Override
