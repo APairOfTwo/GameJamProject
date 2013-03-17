@@ -60,6 +60,12 @@ public class CanvasGame extends Canvas {
 	public static int projectilesCounter = 0;
 	
     private RainDrop[] rainDrops = new RainDrop[200];
+    
+    public static int numBugs = 0;
+    public static int numBugsCorrected = 0;
+    
+    public static int numTerminal = 0;
+    public static int numTerminalActivated = 0;
 	
 	public CanvasGame(int levelId) {
 		instance = this;
@@ -119,11 +125,12 @@ public class CanvasGame extends Canvas {
 				if(!enemiesList.get(i).isAlive){
 					enemiesList.remove(i);
 					i--;
+					numBugsCorrected++;
 				}
 			}
 			
 			if(checkpoints.get(0).isActive) { enableJump = true; }
-			if(checkpoints.get(1).isActive) { enableFire = true; }
+			if(checkpoints.get(1).isActive) { enableFire = true; checkpoints.get(1).featureMsg = GamePanel.loadImage("sprites/bugFixMsg.png"); }
 			if(checkpoints.get(2).isActive) { enableColor = true; }
 			if(checkpoints.get(3).isActive) { enableTransition = true; }
 			if(checkpoints.get(4).isActive) { enableRain = true; }
@@ -224,6 +231,18 @@ public class CanvasGame extends Canvas {
 	            	createRainDrop(i);
 	        }
 		}
+		
+		dbg.setColor(Color.RED);
+		dbg.fillRect(10, 25, 10 * numBugs, 10);
+		dbg.setColor(Color.GREEN);
+		dbg.fillRect(10, 25, 10 * numBugsCorrected, 10);
+		dbg.drawString("Bugs Corrigidos", 10, 18);
+		
+		dbg.setColor(Color.RED);
+		dbg.fillRect(10, 57, 20 * numTerminal, 10);
+		dbg.setColor(Color.GREEN);
+		dbg.fillRect(10, 57, 20 * numTerminalActivated, 10);
+		dbg.drawString("Desenvolvimento do Jogo", 10, 50);
 		
 		if(loading) {
 			dbg.setColor(Color.BLACK);

@@ -47,10 +47,12 @@ public class ElementManager {
 			case 3:
 				Terminal check = new Terminal(ele.blockX<<4, ele.blockY<<4);
 				CanvasGame.checkpoints.add(check);
+				CanvasGame.numTerminal++;
 				break;
 			case 4:
 				Character bug = new EnemyBug(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetEnemyBug, CanvasGame.charsetEnemyBugPeB, 0, 0);
 				CanvasGame.enemiesList.add(bug);
+				CanvasGame.numBugs++;
 				break;
 			case 5:
 				Character platform = new EnemyPlatform(ele.blockX<<4, ele.blockY<<4, CanvasGame.charsetEnemyPlatform, CanvasGame.charsetEnemyPlatformPeB, CanvasGame.imagePlatform, 0, 0);

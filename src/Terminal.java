@@ -10,9 +10,9 @@ public class Terminal extends Sprite {
 	boolean isActive;
 	boolean hasBeenActived = false;
 	boolean respawnBilly, respawnZombie;
+	public static BufferedImage featureMsg = GamePanel.loadImage("sprites/msgDeathBilly.png");
 	BufferedImage checkpointOff = GamePanel.loadImage("sprites/terminalOff.png");
 	BufferedImage checkpointOn = GamePanel.loadImage("sprites/terminalOn.png");
-	BufferedImage checkpointMsg = GamePanel.loadImage("sprites/checkpointMsg.png");
 	int msgX, msgY, msgWidth, msgHeight;
 	boolean showMsg = false;
 	long msgTime = 0;
@@ -26,10 +26,10 @@ public class Terminal extends Sprite {
 		this.isActive = false;
 		this.respawnBilly = false;
 		this.respawnZombie = false;
-		this.msgX = (x - (checkpointMsg.getWidth()/2)) + (checkpointOn.getWidth()/2);
+		this.msgX = (x - (featureMsg.getWidth()/2)) + (checkpointOn.getWidth()/2);
 		this.msgY = y - (checkpointOn.getHeight());
-		this.msgWidth = (msgX + checkpointMsg.getWidth());
-		this.msgHeight = (msgY + checkpointMsg.getHeight());
+		this.msgWidth = (msgX + featureMsg.getWidth());
+		this.msgHeight = (msgY + featureMsg.getHeight());
 		this.mapBlockX = (x+GamePanel.PANEL_WIDTH/4);
 		this.mapBlockY = (y-500);
 		this.mapBlockWidth = ((x + GamePanel.PANEL_WIDTH/4) + GamePanel.PANEL_WIDTH / 2);
@@ -40,11 +40,17 @@ public class Terminal extends Sprite {
 
 	@Override
 	public void selfSimulates(long diffTime) {
+//		this.msgX = (x - (featureMsg.getWidth()/2)) + (checkpointOn.getWidth()/2);
+//		this.msgY = y - (checkpointOn.getHeight());
+//		this.msgWidth = (msgX + featureMsg.getWidth());
+//		this.msgHeight = (msgY + featureMsg.getHeight());
+		
 		if(CanvasGame.billy.getBounds().intersects(x-CanvasGame.map.MapX, y-CanvasGame.map.MapY, 56, 50) && CanvasGame.INTERACTION) {
 			collidedCounter = 1;
 			if(!isActive && collidedCounter == 1) {
 				showMsg = true;
 				collidedCounter = 0;
+				CanvasGame.numTerminalActivated++;
 			}
 			isActive = true;
 		}
@@ -60,7 +66,7 @@ public class Terminal extends Sprite {
 			msgWidth -= 0.02;
 			msgHeight -= 0.02;
 		}
-		if(msgTime >= 2000) {
+		if(msgTime >= 3000) {
 			showMsg = false;
 		}
 	}
@@ -82,7 +88,7 @@ public class Terminal extends Sprite {
 			dbg.setComposite(CanvasGame.comp);
 		}
 		if(showMsg) {
-			dbg.drawImage(checkpointMsg, (int)(msgX-mapX), (int)(msgY-mapY), (int)(msgWidth-mapX), (int)(msgHeight-mapY), 0, 0, checkpointMsg.getWidth(), checkpointMsg.getHeight(), null);
+			dbg.drawImage(featureMsg, (int)(msgX-mapX), (int)(msgY-mapY), (int)(msgWidth-mapX), (int)(msgHeight-mapY), 0, 0, featureMsg.getWidth(), featureMsg.getHeight(), null);
 		}
 	}
 }

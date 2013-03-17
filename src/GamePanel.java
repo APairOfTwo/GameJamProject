@@ -21,7 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public static Canvas canvasActive = null;
 	public boolean gameOver = false;
 	public static float volume = 1.0f;
-	public static boolean showFps = true;
+	public static boolean showFps = false;
 	public static int levelId = 1;
 	
 	public GamePanel(){
