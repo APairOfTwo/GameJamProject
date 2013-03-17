@@ -7,26 +7,22 @@ public class CanvasMainMenu extends Canvas {
 
 	public static CanvasMainMenu instance = null;
 	private BufferedImage background;
-	private GameButton btnNewGame, btnOptions, btnExit;
+	private GameButton btnNewGame, btnExit;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
 	public static boolean MOUSE_PRESSED;
 	
 	public CanvasMainMenu() {
 		instance = this;
-		background = GamePanel.loadImage("backgrounds/tela_inicial.png");
-		btnNewGame = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2, "buttons/iniciarOver.png", "buttons/botaoIniciar.png");
-		btnOptions = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/sobreOver.png", "buttons/botaoSobre.png");
-		btnExit = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 225, "buttons/sairOver.png", "buttons/botaoSair.png");
+		background = GamePanel.loadImage("backgrounds/menuBackground.png");
+		btnNewGame = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/btnIniciarOn.png", "buttons/btnIniciarOff.png");
+		btnExit = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 225, "buttons/btnSairOn.png", "buttons/btnSairOff.png");
 	}
 	
 	@Override
 	public void selfSimulates(long diffTime) {
 		if(btnNewGame.isMouseOver(MOUSE_X, MOUSE_Y)){ btnNewGame.setState(1); }
 		else { btnNewGame.setState(0); }
-		
-		if(btnOptions.isMouseOver(MOUSE_X, MOUSE_Y)){ btnOptions.setState(1); }
-		else { btnOptions.setState(0); }
 		
 		if(btnExit.isMouseOver(MOUSE_X, MOUSE_Y)){ btnExit.setState(1); }
 		else { btnExit.setState(0); }
@@ -39,10 +35,6 @@ public class CanvasMainMenu extends Canvas {
 			MOUSE_PRESSED = false;
 		}
 		
-		if(MOUSE_PRESSED && btnOptions.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
-			MOUSE_PRESSED = false;
-		}
-		
 		if(MOUSE_PRESSED && btnExit.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
 			System.exit(0);
 		}
@@ -52,7 +44,6 @@ public class CanvasMainMenu extends Canvas {
 	public void selfDraws(Graphics2D dbg) {
 		dbg.drawImage(background, 0, 0, GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT, 0, 0, background.getWidth(), background.getHeight(), null);
 		btnNewGame.selfDraws(dbg);
-		btnOptions.selfDraws(dbg);
 		btnExit.selfDraws(dbg);
 	}
 

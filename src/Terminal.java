@@ -10,7 +10,7 @@ public class Terminal extends Sprite {
 	boolean isActive;
 	boolean hasBeenActived = false;
 	boolean respawnBilly, respawnZombie;
-	public static BufferedImage featureMsg = GamePanel.loadImage("sprites/msgDeathBilly.png");
+	public static BufferedImage featureMsg = GamePanel.loadImage("sprites/msgTerminal.png");
 	BufferedImage checkpointOff = GamePanel.loadImage("sprites/terminalOff.png");
 	BufferedImage checkpointOn = GamePanel.loadImage("sprites/terminalOn.png");
 	int msgX, msgY, msgWidth, msgHeight;
@@ -40,13 +40,24 @@ public class Terminal extends Sprite {
 
 	@Override
 	public void selfSimulates(long diffTime) {
-//		this.msgX = (x - (featureMsg.getWidth()/2)) + (checkpointOn.getWidth()/2);
-//		this.msgY = y - (checkpointOn.getHeight());
-//		this.msgWidth = (msgX + featureMsg.getWidth());
-//		this.msgHeight = (msgY + featureMsg.getHeight());
+		this.msgX = (x - (featureMsg.getWidth()/2)) + (checkpointOn.getWidth()/2);
+		this.msgY = y - (checkpointOn.getHeight());
+		this.msgWidth = (msgX + featureMsg.getWidth());
+		this.msgHeight = (msgY + featureMsg.getHeight());
+		
+		if(!CanvasGame.checkpoints.get(0).isActive) {
+			if(CanvasGame.billy.getBounds().intersects(x-CanvasGame.map.MapX, y-CanvasGame.map.MapY, 56, 50)) {
+				if(!isActive) {
+					showMsg = true;
+					collidedCounter = 0;
+				}
+			}
+		}
 		
 		if(CanvasGame.billy.getBounds().intersects(x-CanvasGame.map.MapX, y-CanvasGame.map.MapY, 56, 50) && CanvasGame.INTERACTION) {
 			collidedCounter = 1;
+			featureMsg = GamePanel.loadImage("sprites/msgJump.png");
+			msgTime = 0;
 			if(!isActive && collidedCounter == 1) {
 				showMsg = true;
 				collidedCounter = 0;

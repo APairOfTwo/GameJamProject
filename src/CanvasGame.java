@@ -26,7 +26,7 @@ public class CanvasGame extends Canvas {
 	public static BufferedImage backDay;
 	public static BufferedImage backDayPeB;
 	public static BufferedImage backNight;
-	public BufferedImage loadingScreen = GamePanel.loadImage("backgrounds/loading_background.png");
+	public BufferedImage loadingScreen = GamePanel.loadImage("backgrounds/loadingBackground.png");
 	
 	public static int rule = AlphaComposite.SRC_OVER;
 	public static Composite comp;
@@ -130,8 +130,8 @@ public class CanvasGame extends Canvas {
 			}
 
 			if(checkpoints.get(0).isActive) { enableJump = true; }
-			if(checkpoints.get(1).isActive) { enableFire = true; checkpoints.get(1).featureMsg = GamePanel.loadImage("sprites/bugFixMsg.png"); }
-			if(checkpoints.get(2).isActive) { enableColor = true; }
+			if(checkpoints.get(1).isActive) { enableFire = true; checkpoints.get(1).featureMsg = GamePanel.loadImage("sprites/msgBugs.png"); }
+			if(checkpoints.get(2).isActive) { enableColor = true; checkpoints.get(2).featureMsg = GamePanel.loadImage("sprites/msgCor.png"); }
 			if(checkpoints.get(3).isActive) { enableTransition = true; }
 			if(checkpoints.get(4).isActive) { enableRain = true; }
 
@@ -236,7 +236,7 @@ public class CanvasGame extends Canvas {
 		dbg.fillRect(10, 25, 10 * numBugs, 10);
 		dbg.setColor(Color.GREEN);
 		dbg.fillRect(10, 25, 10 * numBugsCorrected, 10);
-		dbg.drawString("Bugs Corrigidos", 10, 18);
+		dbg.drawString("Bugs Corrigidos: "+numBugsCorrected, 10, 18);
 		
 		dbg.setColor(Color.RED);
 		dbg.fillRect(10, 57, 20 * numTerminal, 10);

@@ -159,8 +159,6 @@ public class CharBilly extends Character {
 		if(isAlive) {
 			super.selfDraws(dbg, mapX, mapY);
 		} else {
-			dbg.setColor(Color.BLACK);
-			dbg.fillRect(0, GamePanel.PANEL_HEIGHT-60, deadMsg.getWidth()+10, deadMsg.getHeight()+10);
 			dbg.drawImage(deadMsg, 5, (int)(GamePanel.PANEL_HEIGHT - 55), (int)(5+deadMsg.getWidth()), (int)((GamePanel.PANEL_HEIGHT - 55)+deadMsg.getHeight()), 0, 0, deadMsg.getWidth(), deadMsg.getHeight(), null);
 		}
 	}

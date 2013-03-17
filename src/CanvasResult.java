@@ -16,8 +16,8 @@ public class CanvasResult extends Canvas {
 	
 	public CanvasResult() {
 		instance = this;
-		background = GamePanel.loadImage("backgrounds/score_background.png");
-		btnRetry = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/btnRetryOn.png", "buttons/btnRetryOff.png");
+		background = GamePanel.loadImage("backgrounds/finalBackground.png");
+		btnRetry = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 150, "buttons/btnReiniciarOn.png", "buttons/btnReiniciarOff.png");
 		
 		numberOfDeaths = CanvasGame.deathCounter;
 		numberOfProjectiles = CanvasGame.projectilesCounter;

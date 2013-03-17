@@ -7,18 +7,17 @@ public class CanvasPause extends Canvas {
 
 	public static CanvasPause instance = null;
 	private BufferedImage background;
-	private GameButton btnResume, btnRetry, btnMainMenu, btnExit;
+	private GameButton btnResume, btnRetry, btnExit;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
 	public static boolean MOUSE_PRESSED;
 	
 	public CanvasPause() {
 		instance = this;		
-		background = GamePanel.loadImage("backgrounds/pause_background.png");
-		btnResume = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 - 50, "buttons/btnResumeOn.png", "buttons/btnResumeOff.png");
-		btnRetry = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2, "buttons/btnRetryOn.png", "buttons/btnRetryOff.png");
-		btnMainMenu = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 50, "buttons/btnMainMenuOn.png", "buttons/btnMainMenuOff.png");
-		btnExit = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 100, "buttons/btnExitOn.png", "buttons/btnExitOff.png");
+		background = GamePanel.loadImage("backgrounds/pauseBackground.png");
+		btnResume = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 - 50, "buttons/btnContinuarOn.png", "buttons/btnContinuarOff.png");
+		btnRetry = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2, "buttons/btnReiniciarOn.png", "buttons/btnReiniciarOff.png");
+		btnExit = new GameButton(GamePanel.PANEL_WIDTH/2 - 50, GamePanel.PANEL_HEIGHT/2 + 100, "buttons/btnSairOn.png", "buttons/btnSairOff.png");
 	}
 	
 	@Override
@@ -28,9 +27,6 @@ public class CanvasPause extends Canvas {
 		
 		if(btnRetry.isMouseOver(MOUSE_X, MOUSE_Y)){ btnRetry.setState(1); }
 		else { btnRetry.setState(0); }
-		
-		if(btnMainMenu.isMouseOver(MOUSE_X, MOUSE_Y)){ btnMainMenu.setState(1); }
-		else { btnMainMenu.setState(0); }
 		
 		if(btnExit.isMouseOver(MOUSE_X, MOUSE_Y)){ btnExit.setState(1); }
 		else { btnExit.setState(0); }
@@ -47,13 +43,6 @@ public class CanvasPause extends Canvas {
 			MOUSE_PRESSED = false;
 		}
 		
-		if(MOUSE_PRESSED && btnMainMenu.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
-			CanvasGame.deathCounter = 0;
-			CanvasGame.projectilesCounter = 0;
-			GamePanel.canvasActive = new CanvasMainMenu();
-			MOUSE_PRESSED = false;
-		}
-		
 		if(MOUSE_PRESSED && btnExit.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
 			System.exit(0);
 		}
@@ -64,14 +53,13 @@ public class CanvasPause extends Canvas {
 		dbg.drawImage(background, GamePanel.PANEL_WIDTH/2 - 150, GamePanel.PANEL_HEIGHT/2 - 200, GamePanel.PANEL_WIDTH/2 + 150, GamePanel.PANEL_HEIGHT/2 + 200, 0, 0, background.getWidth(), background.getHeight(), null);
 		btnResume.selfDraws(dbg);
 		btnRetry.selfDraws(dbg);
-		btnMainMenu.selfDraws(dbg);
 		btnExit.selfDraws(dbg);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent k){
 		int keyCode = k.getKeyCode();
-		if(keyCode == KeyEvent.VK_ESCAPE){
+		if(keyCode == KeyEvent.VK_ESCAPE) {
 			closeThisCanvas();
 		}
 	}
