@@ -131,9 +131,8 @@ public class CanvasGame extends Canvas {
 			if(checkpoints.get(0).isActive) { enableJump = true; }
 			if(checkpoints.get(1).isActive) { enableFire = true; checkpoints.get(1).featureMsg = GamePanel.loadImage("sprites/msgBugs.png"); }
 			if(checkpoints.get(2).isActive) { enableColor = true; checkpoints.get(2).featureMsg = GamePanel.loadImage("sprites/msgCor.png"); }
-			if(checkpoints.get(3).isActive) { enableTransition = true; }
+			if(checkpoints.get(3).isActive) { enableTransition = true; checkpoints.get(3).featureMsg = GamePanel.loadImage("sprites/msgGeral.png"); }
 			if(checkpoints.get(4).isActive) { enableRain = true; }
-
 			if(!enableTilesetColor && enableColor) {
 				map.TileSet = GamePanel.loadImage(strTileset01);
 				enableTilesetColor = true;
