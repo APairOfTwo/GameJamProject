@@ -1,3 +1,4 @@
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -53,7 +54,6 @@ public class Terminal extends Sprite {
 		
 		if(!isActive && CanvasGame.billy.getBounds().intersects(mapBlockX-CanvasGame.map.MapX, mapBlockY-CanvasGame.map.MapY, mapBlockWidth-CanvasGame.map.MapX, mapBlockHeight-CanvasGame.map.MapY)) {
 			CanvasGame.billy.x = CanvasGame.billy.oldX;
-			System.out.println("colidiu");
 		}
 
 		if(showMsg) {
@@ -74,8 +74,15 @@ public class Terminal extends Sprite {
 			dbg.drawImage(checkpointOn, (int)(x-mapX), (int)(y-mapY), (int)((x+checkpointOn.getWidth())-mapX), (int)((y+checkpointOn.getHeight())-mapY), 0, 0, checkpointOn.getWidth(), checkpointOn.getHeight(), null);
 		} else {
 			dbg.drawImage(checkpointOff, (int)(x-mapX), (int)(y-mapY), (int)((x+checkpointOff.getWidth())-mapX), (int)((y+checkpointOff.getHeight())-mapY), 0, 0, checkpointOff.getWidth(), checkpointOff.getHeight(), null);
-			dbg.setColor(Color.WHITE);
+			
+			CanvasGame.comp = AlphaComposite.getInstance(CanvasGame.rule , 0.5f);
+			dbg.setComposite(CanvasGame.comp);
+			
+			dbg.setColor(Color.RED);
 			dbg.fillRect((int)(mapBlockX-mapX), (int)(mapBlockY-mapY), (int)(mapBlockWidth-mapX), (int)(mapBlockHeight-mapY));
+			
+			CanvasGame.comp = AlphaComposite.getInstance(CanvasGame.rule , 1f);
+			dbg.setComposite(CanvasGame.comp);
 		}
 		if(showMsg) {
 			dbg.drawImage(checkpointMsg, (int)(msgX-mapX), (int)(msgY-mapY), (int)(msgWidth-mapX), (int)(msgHeight-mapY), 0, 0, checkpointMsg.getWidth(), checkpointMsg.getHeight(), null);

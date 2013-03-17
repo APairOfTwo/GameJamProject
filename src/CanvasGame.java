@@ -24,8 +24,8 @@ public class CanvasGame extends Canvas {
 	public static BufferedImage backNight;
 	public BufferedImage loadingScreen = GamePanel.loadImage("backgrounds/loading_background.png");
 	
-	public int rule = AlphaComposite.SRC_OVER;
-	public Composite comp;
+	public static int rule = AlphaComposite.SRC_OVER;
+	public static Composite comp;
 	public float alpha = 1f;
 	public float decreaseTimeTick = 2000;
 	public boolean descTime = true;
