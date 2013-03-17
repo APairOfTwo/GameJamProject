@@ -2,10 +2,7 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-
-import org.w3c.dom.css.Rect;
 
 
 public class Terminal extends Sprite {
@@ -13,8 +10,8 @@ public class Terminal extends Sprite {
 	boolean isActive;
 	boolean hasBeenActived = false;
 	boolean respawnBilly, respawnZombie;
-	BufferedImage checkpointOff = GamePanel.loadImage("sprites/checkpointOff.png");
-	BufferedImage checkpointOn = GamePanel.loadImage("sprites/checkpointOn.png");
+	BufferedImage checkpointOff = GamePanel.loadImage("sprites/terminalOff.png");
+	BufferedImage checkpointOn = GamePanel.loadImage("sprites/terminalOn.png");
 	BufferedImage checkpointMsg = GamePanel.loadImage("sprites/checkpointMsg.png");
 	int msgX, msgY, msgWidth, msgHeight;
 	boolean showMsg = false;
@@ -43,7 +40,7 @@ public class Terminal extends Sprite {
 
 	@Override
 	public void selfSimulates(long diffTime) {
-		if(CanvasGame.billy.getBounds().intersects(x-CanvasGame.map.MapX, y-CanvasGame.map.MapY, 16, 64) && CanvasGame.INTERACTION) {
+		if(CanvasGame.billy.getBounds().intersects(x-CanvasGame.map.MapX, y-CanvasGame.map.MapY, 56, 50) && CanvasGame.INTERACTION) {
 			collidedCounter = 1;
 			if(!isActive && collidedCounter == 1) {
 				showMsg = true;
