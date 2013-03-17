@@ -40,7 +40,7 @@ public class CharBilly extends Character {
 		if((y+frameHeight > (CanvasGame.map.Altura << 4)-5)) { isAlive = false; }
 		
 		if(!isHeadless) {
-			if((CanvasGame.FIRE) && fireTimer > fireRate){
+			if((CanvasGame.FIRE && CanvasGame.enableFire) && fireTimer > fireRate){
 				fireAnim += diffTime;
 				fireTimer = 0;
 				float vproj = 600;
@@ -60,7 +60,7 @@ public class CharBilly extends Character {
 				CanvasGame.projectilesList.add(proj);
 			}
 			
-			if((CanvasGame.JUMP) && onTheFloor) {
+			if((CanvasGame.JUMP && CanvasGame.enableJump) && onTheFloor) {
 				animeSpeed = 150;
 				jumpSpeed = 1100;
 				hasJumped = true;

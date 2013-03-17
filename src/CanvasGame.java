@@ -42,6 +42,7 @@ public class CanvasGame extends Canvas {
 	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	
 	public static boolean LEFT, RIGHT, JUMP, FIRE, INTERACTION;
+	public static boolean enableJump, enableFire;
 	public static boolean MOUSE_PRESSED;
 	public static int MOUSE_X, MOUSE_Y;
 	public static int MOUSE_CLICK_X, MOUSE_CLICK_Y;
@@ -73,6 +74,8 @@ public class CanvasGame extends Canvas {
 		MOUSE_CLICK_X = 0;
 		MOUSE_CLICK_Y = 0;
 		MOUSE_PRESSED = false;
+		enableJump = false;
+		enableFire = false;
 		loading = true;
         createRainDrops();
 	}
@@ -108,6 +111,9 @@ public class CanvasGame extends Canvas {
 					i--;
 				}
 			}
+			
+			if(checkpoints.get(0).isActive) { enableJump = true; }
+			if(checkpoints.get(1).isActive) { enableFire = true; }
 			
 			for(Terminal c : checkpoints) {
 				c.selfSimulates(diffTime);
