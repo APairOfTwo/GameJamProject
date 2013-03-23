@@ -65,6 +65,12 @@ public class CanvasGame extends Canvas {
     
     public static int numTerminal = 0;
     public static int numTerminalActivated = 0;
+    
+    boolean ativouTerminal0 = false;
+    boolean ativouTerminal1 = false;
+    boolean ativouTerminal2 = false;
+    boolean ativouTerminal3 = false;
+    boolean ativouTerminal4 = false;
 	
 	public CanvasGame(int levelId) {
 		instance = this;
@@ -127,12 +133,43 @@ public class CanvasGame extends Canvas {
 					numBugsCorrected++;
 				}
 			}
-
-			if(checkpoints.get(0).isActive) { enableJump = true; }
-			if(checkpoints.get(1).isActive) { enableFire = true; checkpoints.get(1).featureMsg = GamePanel.loadImage("sprites/msgBugs.png"); }
-			if(checkpoints.get(2).isActive) { enableColor = true; checkpoints.get(2).featureMsg = GamePanel.loadImage("sprites/msgCor.png"); }
-			if(checkpoints.get(3).isActive) { enableTransition = true; checkpoints.get(3).featureMsg = GamePanel.loadImage("sprites/msgGeral.png"); }
-			if(checkpoints.get(4).isActive) { enableRain = true; }
+			
+			if(!ativouTerminal0) {
+				if(checkpoints.get(0).isActive) {
+					enableJump = true;
+					checkpoints.get(0).featureMsg = GamePanel.loadImage("sprites/msgJump.png");
+					ativouTerminal0 = true;
+				}
+			}
+			if(!ativouTerminal1) {
+				if(checkpoints.get(1).isActive) {
+					enableFire = true;
+					checkpoints.get(1).featureMsg = GamePanel.loadImage("sprites/msgBugs.png");
+					ativouTerminal1 = true;
+				}
+			}
+			if(!ativouTerminal2) {
+				if(checkpoints.get(2).isActive) {
+					enableColor = true;
+					checkpoints.get(2).featureMsg = GamePanel.loadImage("sprites/msgCor.png");
+					ativouTerminal2 = true;
+				}
+			}
+			if(!ativouTerminal3) {
+				if(checkpoints.get(3).isActive) {
+					enableTransition = true;
+					checkpoints.get(3).featureMsg = GamePanel.loadImage("sprites/msgGeral.png");
+					ativouTerminal3 = true;
+				}
+			}
+			
+			if(!ativouTerminal4) {
+				if(checkpoints.get(4).isActive) {
+					enableRain = true;
+					ativouTerminal4 = true;
+				}
+			}
+			
 			if(!enableTilesetColor && enableColor) {
 				map.TileSet = GamePanel.loadImage(strTileset01);
 				enableTilesetColor = true;

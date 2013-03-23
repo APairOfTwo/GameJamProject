@@ -56,7 +56,6 @@ public class Terminal extends Sprite {
 		
 		if(CanvasGame.billy.getBounds().intersects(x-CanvasGame.map.MapX, y-CanvasGame.map.MapY, 56, 50) && CanvasGame.INTERACTION) {
 			collidedCounter = 1;
-			featureMsg = GamePanel.loadImage("sprites/msgJump.png");
 			msgTime = 0;
 			if(!isActive && collidedCounter == 1) {
 				showMsg = true;
