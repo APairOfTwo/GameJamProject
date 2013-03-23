@@ -31,13 +31,13 @@ public class CanvasGame extends Canvas {
 	public static int rule = AlphaComposite.SRC_OVER;
 	public static Composite comp;
 	public float alpha = 1f;
-	public float decreaseTimeTick = 2000;
+	public float decreaseTimeTick = 0;
 	public boolean descTime = true;
 	
 	public static String strMap01 = new String("maps/mapacompleto.map");
-	public static String strTileset01 = new String("maps/tileset2222.png");
+	public static String strTileset01 = new String("maps/tileset.png");
 	public static String strTilesetPeB = new String("maps/tilesetPeB.png");
-	public static String strElements01 = new String("csv/teste2.csv");
+	public static String strElements01 = new String("csv/mapa1.csv");
 	
 	Random rand = new Random();
 	
@@ -213,7 +213,7 @@ public class CanvasGame extends Canvas {
 
 		} else {
 			loadTime += diffTime;
-			if(loadTime >= 2000) {
+			if(loadTime >= 1500) {
 				loadTime = 0;
 				loading = false;
 				MainApplet.music1.loop(); 
@@ -226,12 +226,12 @@ public class CanvasGame extends Canvas {
 		if(enableTransition) {
 			dbg.drawImage(backNight, 0, 0, null);
 			
-	        comp = AlphaComposite.getInstance(rule , alpha);
+	        comp = AlphaComposite.getInstance(rule, alpha);
 	        dbg.setComposite(comp);
 			
 	        dbg.drawImage(backDay, 0, 0, null);
 	        
-	        comp = AlphaComposite.getInstance(rule , 1f);
+	        comp = AlphaComposite.getInstance(rule, 1f);
 	        dbg.setComposite(comp);
 		} else {
 			if(enableColor) {
@@ -363,7 +363,7 @@ public class CanvasGame extends Canvas {
 			checkpoints.clear();
 			gameElements.elementsList.clear();
 			tileset = GamePanel.loadImage(strTilesetPeB);
-			map = new TileMap(CanvasGame.tileset, (GamePanel.PANEL_WIDTH>>4)+(((GamePanel.PANEL_WIDTH&0x000f)>0)?1:0), (GamePanel.PANEL_HEIGHT>>4)+(((GamePanel.PANEL_HEIGHT%16)>0)?1:0));
+			map = new TileMap(tileset, (GamePanel.PANEL_WIDTH>>4)+(((GamePanel.PANEL_WIDTH&0x000f)>0)?1:0), (GamePanel.PANEL_HEIGHT>>4)+(((GamePanel.PANEL_HEIGHT%16)>0)?1:0));
 			map.OpenMap(strMap01);
 			gameElements = new ElementManager(strElements01);
 			gameElements.decodeElements();

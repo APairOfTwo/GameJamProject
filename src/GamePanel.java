@@ -9,8 +9,8 @@ import javax.imageio.ImageIO;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable {
 	
-	public static final int PANEL_WIDTH = 800;
-	public static final int PANEL_HEIGHT = 600;
+	public static final int PANEL_WIDTH = 700;
+	public static final int PANEL_HEIGHT = 525;
 	public static GamePanel instance;
 	private Thread gameThread;
 	public static boolean running = false;
@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
 		requestFocus();
 		
 		if (buffImage == null){
-			buffImage = new BufferedImage(PANEL_WIDTH, PANEL_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+			buffImage = new BufferedImage(PANEL_WIDTH, PANEL_HEIGHT, BufferedImage.TYPE_3BYTE_BGR);
 			if (buffImage == null){
 				System.out.println("buffered image is null");
 				return;

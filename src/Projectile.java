@@ -8,10 +8,10 @@ public class Projectile extends Sprite {
 	int bx, by;
 	Object pai = null;
 	BufferedImage bmp;
-	BufferedImage bmp2;
+	BufferedImage bmpPeB;
 	public static int frameWidth, frameHeight;
 	
-	public Projectile(float x, float y, float velX, float velY, BufferedImage bmp, Object pai) {
+	public Projectile(float x, float y, float velX, float velY, BufferedImage bmp, BufferedImage bmpPeB, Object pai) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -19,6 +19,7 @@ public class Projectile extends Sprite {
 		this.velY = velY;
 		this.pai = pai;
 		this.bmp = bmp;
+		this.bmpPeB = bmpPeB;
 		frameWidth = bmp.getWidth();
 		frameHeight = bmp.getHeight();
 		CanvasGame.projectilesCounter++;

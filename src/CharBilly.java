@@ -22,7 +22,7 @@ public class CharBilly extends Character {
 		this.spawnX = x;
 		this.spawnY = y;
 		bmpBone = GamePanel.loadImage("sprites/tiro.png");
-		bmpBone = GamePanel.loadImage("sprites/tiroPeB.png");
+		bmpBonePeB = GamePanel.loadImage("sprites/tiroPeB.png");
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class CharBilly extends Character {
 				float vX = (float)(vproj * Math.cos(angle));
 				float vY = (float)(vproj * Math.sin(angle));
 				
-				proj = new ProjBone(x + centerX, y + centerY, vX, vY, bmpBone, this);
+				proj = new ProjBone(x + centerX, y + centerY, vX, vY, bmpBone, bmpBonePeB, this);
 				CanvasGame.projectilesList.add(proj);
 			}
 			
