@@ -22,7 +22,6 @@ public class Projectile extends Sprite {
 		this.bmpPeB = bmpPeB;
 		frameWidth = bmp.getWidth();
 		frameHeight = bmp.getHeight();
-		CanvasGame.projectilesCounter++;
 	}
 	
 	@Override

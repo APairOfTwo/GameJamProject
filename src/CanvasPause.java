@@ -37,7 +37,6 @@ public class CanvasPause extends Canvas {
 		}
 		
 		if(MOUSE_PRESSED && btnRetry.isMouseOver(MOUSE_CLICK_X, MOUSE_CLICK_Y)) {
-			CanvasGame.projectilesCounter = 0;
 			CanvasGame.numBugsCorrected = 0;
 			CanvasGame.numTerminalActivated = 0;
 			GamePanel.changeMap(GamePanel.levelId);
