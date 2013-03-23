@@ -29,4 +29,15 @@ public class MainApplet extends JApplet {
 		setVisible(true);
 	}
 	
+	public void destroy() {
+		try {
+			this.menuMusic.stop();
+			this.music1.stop();
+		}
+		catch (Exception e) {}
+
+		this.menuMusic = null;
+		this.music1 = null;
+	}
+	
 }
