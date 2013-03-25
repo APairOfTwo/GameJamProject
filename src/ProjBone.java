@@ -3,10 +3,11 @@ import java.awt.image.BufferedImage;
 
 
 public class ProjBone extends Projectile {
-	float boneRadius = 6;
+	float boneRadius;
 
 	public ProjBone(float x, float y, float velX, float velY, BufferedImage bmp, BufferedImage bmpPeB, Object pai) {
 		super(x, y, velX, velY, bmp, bmpPeB, pai);
+		boneRadius = bmp.getWidth()/2;
 	}
 
 	@Override

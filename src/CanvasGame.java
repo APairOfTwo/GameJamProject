@@ -35,7 +35,7 @@ public class CanvasGame extends Canvas {
 	public boolean descTime = true;
 	
 	public static String strMap01 = new String("maps/mapacompleto.map");
-	public static String strTileset01 = new String("maps/tileset.png");
+	public static String strTileset01 = new String("maps/tileset2222.png");
 	public static String strTilesetPeB = new String("maps/tilesetPeB.png");
 	public static String strElements01 = new String("csv/mapa1.csv");
 	

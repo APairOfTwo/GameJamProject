@@ -35,7 +35,7 @@ public class CanvasResult extends Canvas {
 	public void selfDraws(Graphics2D dbg) {
 		dbg.drawImage(background, GamePanel.PANEL_WIDTH/2 - 300, GamePanel.PANEL_HEIGHT/2 - 250, GamePanel.PANEL_WIDTH/2 + 300, GamePanel.PANEL_HEIGHT/2 + 250, 0, 0, background.getWidth(), background.getHeight(), null);
 		btnRetry.selfDraws(dbg);
-		dbg.drawString("Gercinel desenvolveu o jogo 100%", GamePanel.PANEL_WIDTH/2 - 93, GamePanel.PANEL_HEIGHT/2 - 50);
+		dbg.drawString("Gercinel desenvolveu 100% do jogo", GamePanel.PANEL_WIDTH/2 - 93, GamePanel.PANEL_HEIGHT/2 - 50);
 		dbg.drawString("Número de bugs corrigidos: " + CanvasGame.numBugsCorrected, GamePanel.PANEL_WIDTH/2 - 81, GamePanel.PANEL_HEIGHT/2);
 	}
 
