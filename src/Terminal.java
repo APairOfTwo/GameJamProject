@@ -10,7 +10,7 @@ public class Terminal extends Sprite {
 	boolean isActive;
 	boolean hasBeenActived = false;
 	boolean respawnBilly, respawnZombie;
-	public static BufferedImage featureMsg = GamePanel.loadImage("sprites/msgTerminal.png");
+	public static BufferedImage featureMsg = GamePanel.loadImage("sprites/msgTerminal2.png");
 	BufferedImage checkpointOff = GamePanel.loadImage("sprites/terminalOff.png");
 	BufferedImage checkpointOn = GamePanel.loadImage("sprites/terminalOn.png");
 	int msgX, msgY, msgWidth, msgHeight;

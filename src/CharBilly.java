@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 public class CharBilly extends Character {
 	int fireRate = 300;
 	int respawnCountTime;
-	float speed = 220;
+	float speed = 230;
 	Projectile proj;
 	boolean positionsMap = false;
 	float spawnX, spawnY;
@@ -72,6 +72,10 @@ public class CharBilly extends Character {
 			if(!CanvasGame.JUMP) {
 				jumpSpeed = jumpSpeed / 2;
 			}
+			if(CanvasGame.WALK)
+				speed = 130;
+			else
+				speed = 230;
 			if(CanvasGame.RIGHT) {
 				animeSpeed = 150;
 				x += speed * diffTime / 1000.0f;

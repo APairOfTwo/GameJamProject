@@ -23,6 +23,7 @@ public class CanvasGame extends Canvas {
 	public static BufferedImage imagePlatform;
 	public static BufferedImage tileset;
 	public static BufferedImage tilesetPeB;
+	public static BufferedImage backGray;
 	public static BufferedImage backDay;
 	public static BufferedImage backDayPeB;
 	public static BufferedImage backNight;
@@ -46,7 +47,7 @@ public class CanvasGame extends Canvas {
 	public static ArrayList<Terminal> checkpoints = new ArrayList<Terminal>();
 	public static ArrayList<Effect> effectsList = new ArrayList<Effect>();
 	
-	public static boolean LEFT, RIGHT, JUMP, FIRE, INTERACTION;
+	public static boolean LEFT, RIGHT, WALK, JUMP, FIRE, INTERACTION;
 	public static boolean enableJump, enableFire, enableColor, enableRain, enableTransition, enableTilesetColor;
 	public static boolean MOUSE_PRESSED;
 	public static int MOUSE_X, MOUSE_Y;
@@ -82,6 +83,7 @@ public class CanvasGame extends Canvas {
 		charsetEnemyBugPeB = GamePanel.loadImage("sprites/bugPeB.png");
 		charsetEnemyPlatform = GamePanel.loadImage("sprites/bugPlatform.png");
 		imagePlatform = GamePanel.loadImage("sprites/platform.png");
+		backGray = GamePanel.loadImage("backgrounds/gray.png");
 		backDay = GamePanel.loadImage("backgrounds/day_sky.png");
 		backDayPeB = GamePanel.loadImage("backgrounds/day_skyPeB.png");
 		backNight = GamePanel.loadImage("backgrounds/night_sky.png");
@@ -143,7 +145,7 @@ public class CanvasGame extends Canvas {
 			if(!ativouTerminal1) {
 				if(checkpoints.get(1).isActive) {
 					enableFire = true;
-					checkpoints.get(1).featureMsg = GamePanel.loadImage("sprites/msgBugs.png");
+					checkpoints.get(1).featureMsg = GamePanel.loadImage("sprites/msgBugs2.png");
 					ativouTerminal1 = true;
 				}
 			}
@@ -215,7 +217,8 @@ public class CanvasGame extends Canvas {
 			if(loadTime >= 1500) {
 				loadTime = 0;
 				loading = false;
-				MainApplet.music1.loop(); 
+				// TODO
+				//MainApplet.music1.loop(); 
 			}
 		}
 	}
@@ -236,11 +239,21 @@ public class CanvasGame extends Canvas {
 			if(enableColor) {
 				dbg.drawImage(backDay, 0, 0, null);
 			} else {
-				dbg.drawImage(backDayPeB, 0, 0, null);
+				if (!ativouTerminal1)
+					dbg.drawImage(backGray, 0, 0, null);
+				else
+					dbg.drawImage(backDayPeB, 0, 0, null);
 			}
 		}
 
 		map.selfDraws(dbg);
+		
+		// Draw a white rectangle in the beginning of the game
+		if (!ativouTerminal0)
+		{
+			dbg.setColor(Color.WHITE);
+			dbg.fillRect(0, 0, GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT);
+		}
 		
 		for(int i = 0; i < projectilesList.size(); i++){
 			projectilesList.get(i).selfDraws(dbg, map.MapX, map.MapY);
@@ -266,17 +279,20 @@ public class CanvasGame extends Canvas {
 	        }
 		}
 		
-		dbg.setColor(Color.RED);
-		dbg.fillRect(10, 25, 10 * numBugs, 10);
-		dbg.setColor(Color.GREEN);
-		dbg.fillRect(10, 25, 10 * numBugsCorrected, 10);
-		dbg.drawString("Bugs Corrigidos: "+numBugsCorrected, 10, 18);
-		
-		dbg.setColor(Color.RED);
-		dbg.fillRect(10, 57, 20 * numTerminal, 10);
-		dbg.setColor(Color.GREEN);
-		dbg.fillRect(10, 57, 20 * numTerminalActivated, 10);
-		dbg.drawString("Desenvolvimento do Jogo", 10, 50);
+		if (ativouTerminal0)
+		{
+			dbg.setColor(Color.RED);
+			dbg.fillRect(10, 25, 10 * numBugs, 10);
+			dbg.setColor(Color.GREEN);
+			dbg.fillRect(10, 25, 10 * numBugsCorrected, 10);
+			dbg.drawString("Bugs Corrigidos: "+numBugsCorrected, 10, 18);
+			
+			dbg.setColor(Color.RED);
+			dbg.fillRect(10, 57, 20 * numTerminal, 10);
+			dbg.setColor(Color.GREEN);
+			dbg.fillRect(10, 57, 20 * numTerminalActivated, 10);
+			dbg.drawString("Desenvolvimento do Jogo", 10, 50);
+		}
 		
 		if(loading) {
 			dbg.setColor(Color.BLACK);
@@ -290,9 +306,10 @@ public class CanvasGame extends Canvas {
 		int keyCode = k.getKeyCode();
 		if(keyCode == KeyEvent.VK_A)		{ LEFT = true; }
 		if(keyCode == KeyEvent.VK_D)		{ RIGHT = true; }
+		if(keyCode == KeyEvent.VK_SHIFT)	{ WALK = true; }
 		if(keyCode == KeyEvent.VK_W)		{ JUMP  = true; }
-		if(keyCode == KeyEvent.VK_CONTROL)		{ INTERACTION  = true;}
-		if(keyCode == KeyEvent.VK_F)	{ GamePanel.showFps = !GamePanel.showFps; }
+		if(keyCode == KeyEvent.VK_SPACE)	{ INTERACTION  = true;}
+		if(keyCode == KeyEvent.VK_F)		{ GamePanel.showFps = !GamePanel.showFps; }
 		if(keyCode == KeyEvent.VK_ESCAPE) {
 			if(CanvasPause.instance == null) {
 				CanvasPause pause = new CanvasPause();
@@ -306,8 +323,9 @@ public class CanvasGame extends Canvas {
 		int keyCode = k.getKeyCode();
 		if(keyCode == KeyEvent.VK_A)		{ LEFT  = false; }
 		if(keyCode == KeyEvent.VK_D)		{ RIGHT = false; }
+		if(keyCode == KeyEvent.VK_SHIFT)	{ WALK = false; }
 		if(keyCode == KeyEvent.VK_W)		{ JUMP  = false; }
-		if(keyCode == KeyEvent.VK_CONTROL)		{ INTERACTION  = false; }
+		if(keyCode == KeyEvent.VK_SPACE)	{ INTERACTION  = false; }
 	}
 
 	@Override
